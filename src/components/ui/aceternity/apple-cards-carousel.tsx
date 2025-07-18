@@ -259,8 +259,7 @@ export const Card = ({
         <BlurImage
           src={card.src}
           alt={card.title}
-          fill
-          className="absolute inset-0 z-10 object-cover"
+          className="absolute inset-0 z-10 object-cover h-full w-full"
         />
       </motion.button>
     </>
@@ -276,6 +275,20 @@ export const BlurImage = ({
   ...rest
 }: ImageProps) => {
   const [isLoading, setLoading] = useState(true);
+
+  // Filter out Next.js Image specific props that shouldn't be passed to img tag
+  const {
+    blurDataURL,
+    placeholder,
+    priority,
+    quality,
+    fill,
+    sizes,
+    loader,
+    unoptimized,
+    ...imgProps
+  } = rest;
+
   return (
     <img
       className={cn(
@@ -289,9 +302,8 @@ export const BlurImage = ({
       height={height}
       loading="lazy"
       decoding="async"
-      blurDataURL={typeof src === "string" ? src : undefined}
       alt={alt ? alt : "Background of a beautiful view"}
-      {...rest}
+      {...imgProps}
     />
   );
 };
