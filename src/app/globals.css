@@ -4,6 +4,7 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  /* Base theme variables */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
@@ -41,10 +42,18 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+
+  /* DevBran.ch brand colors */
+  --color-devbranch-primary: var(--devbranch-primary);
+  --color-devbranch-accent-pink: var(--devbranch-accent-pink);
+  --color-devbranch-accent-green: var(--devbranch-accent-green);
+  --color-devbranch-accent-dark-green: var(--devbranch-accent-dark-green);
+  --color-devbranch-text: var(--devbranch-text);
 }
 
 :root {
   --radius: 0.625rem;
+  /* Base theme variables */
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
@@ -76,9 +85,17 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+
+  /* DevBran.ch brand colors */
+  --devbranch-primary: #565264;
+  --devbranch-accent-pink: #E8C7DE;
+  --devbranch-accent-green: #E7EBC5;
+  --devbranch-accent-dark-green: #56876D;
+  --devbranch-text: #0C0C0C;
 }
 
 .dark {
+  /* Base theme variables */
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.205 0 0);
@@ -110,12 +127,20 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+
+  /* DevBran.ch brand colors - dark mode variants */
+  --devbranch-primary: #565264;
+  --devbranch-accent-pink: #E8C7DE;
+  --devbranch-accent-green: #E7EBC5;
+  --devbranch-accent-dark-green: #56876D;
+  --devbranch-text: #FFFFFF;
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
