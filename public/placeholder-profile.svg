@@ -1,0 +1,61 @@
+<svg width="390" height="844" viewBox="0 0 390 844" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="390" height="844" fill="#E7EBC5"/>
+  
+  <!-- Status bar area -->
+  <rect x="0" y="0" width="390" height="60" fill="#0C0C0C" opacity="0.05"/>
+  
+  <!-- Header profile section -->
+  <rect x="20" y="80" width="350" height="120" rx="12" fill="#565264"/>
+  <circle cx="80" cy="140" r="30" fill="#E8C7DE"/>
+  <rect x="125" y="120" width="140" height="16" rx="8" fill="#E8C7DE"/>
+  <rect x="125" y="145" width="100" height="12" rx="6" fill="#56876D"/>
+  <rect x="125" y="165" width="80" height="10" rx="5" fill="#E8C7DE" opacity="0.7"/>
+  
+  <!-- Join waitlist button -->
+  <rect x="20" y="220" width="350" height="50" rx="25" fill="#56876D"/>
+  <text x="195" y="250" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="16" font-weight="bold">Join Waitlist</text>
+  
+  <!-- Profile stats section -->
+  <rect x="20" y="290" width="350" height="80" rx="12" fill="white"/>
+  <rect x="40" y="310" width="80" height="12" rx="6" fill="#565264"/>
+  <rect x="40" y="330" width="60" height="10" rx="5" fill="#56876D"/>
+  <rect x="40" y="350" width="100" height="8" rx="4" fill="#E8C7DE"/>
+  
+  <rect x="150" y="310" width="90" height="12" rx="6" fill="#565264"/>
+  <rect x="150" y="330" width="70" height="10" rx="5" fill="#56876D"/>
+  <rect x="150" y="350" width="110" height="8" rx="4" fill="#E8C7DE"/>
+  
+  <rect x="270" y="310" width="80" height="12" rx="6" fill="#565264"/>
+  <rect x="270" y="330" width="60" height="10" rx="5" fill="#56876D"/>
+  
+  <!-- Link cards -->
+  <rect x="20" y="390" width="350" height="70" rx="12" fill="#E8C7DE"/>
+  <circle cx="50" cy="425" r="15" fill="#565264"/>
+  <rect x="75" y="415" width="120" height="12" rx="6" fill="#565264"/>
+  <rect x="75" y="435" width="80" height="8" rx="4" fill="#565264" opacity="0.7"/>
+  <rect x="320" y="420" width="30" height="10" rx="5" fill="#56876D"/>
+  
+  <rect x="20" y="480" width="350" height="70" rx="12" fill="#56876D"/>
+  <circle cx="50" cy="515" r="15" fill="white"/>
+  <rect x="75" y="505" width="140" height="12" rx="6" fill="white"/>
+  <rect x="75" y="525" width="90" height="8" rx="4" fill="white" opacity="0.8"/>
+  <rect x="320" y="510" width="30" height="10" rx="5" fill="#E8C7DE"/>
+  
+  <rect x="20" y="570" width="350" height="70" rx="12" fill="#E8C7DE"/>
+  <circle cx="50" cy="605" r="15" fill="#565264"/>
+  <rect x="75" y="595" width="100" height="12" rx="6" fill="#565264"/>
+  <rect x="75" y="615" width="120" height="8" rx="4" fill="#565264" opacity="0.7"/>
+  <rect x="320" y="600" width="30" height="10" rx="5" fill="#56876D"/>
+  
+  <rect x="20" y="660" width="350" height="70" rx="12" fill="#56876D"/>
+  <circle cx="50" cy="695" r="15" fill="white"/>
+  <rect x="75" y="685" width="110" height="12" rx="6" fill="white"/>
+  <rect x="75" y="705" width="70" height="8" rx="4" fill="white" opacity="0.8"/>
+  <rect x="320" y="690" width="30" height="10" rx="5" fill="#E8C7DE"/>
+  
+  <!-- Footer branding -->
+  <text x="195" y="780" text-anchor="middle" fill="#565264" font-family="Arial, sans-serif" font-size="18" font-weight="bold">DevBran.ch</text>
+  <text x="195" y="800" text-anchor="middle" fill="#565264" font-family="Arial, sans-serif" font-size="14">@johndoe</text>
+  <text x="195" y="820" text-anchor="middle" fill="#56876D" font-family="Arial, sans-serif" font-size="12">Your developer profile</text>
+</svg>

@@ -1,0 +1,83 @@
+"use client";
+import { Safari } from "@/components/ui/safari";
+import { Button } from "@/components/ui/button";
+import { ArrowRight, Globe, Code, User } from "lucide-react";
+
+export function SafariShowcaseSection() {
+    return (
+        <section className="relative py-20 md:py-32 bg-gradient-to-b from-[#E7EBC5] to-[#E8C7DE] overflow-hidden">
+            <div className="container mx-auto px-4">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                    {/* Content */}
+                    <div className="space-y-8 text-center lg:text-left">
+                        <div className="space-y-4">
+                            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+                                <span className="text-[#565264]">Beautiful</span>
+                                <br />
+                                <span className="text-[#56876D]">Developer</span>
+                                <br />
+                                <span className="text-[#565264]">Profiles</span>
+                            </h2>
+                            <p className="text-lg sm:text-xl text-[#565264] leading-relaxed max-w-xl mx-auto lg:mx-0">
+                                Create stunning, professional profiles that showcase your coding skills,
+                                projects, and achievements in one seamless experience.
+                            </p>
+                        </div>
+
+                        {/* Features list */}
+                        <div className="space-y-4">
+                            <div className="flex items-center gap-3 justify-center lg:justify-start">
+                                <div className="w-8 h-8 rounded-full bg-[#56876D] flex items-center justify-center">
+                                    <Code className="w-4 h-4 text-white" />
+                                </div>
+                                <span className="text-[#565264] font-medium">GitHub integration & project showcase</span>
+                            </div>
+                            <div className="flex items-center gap-3 justify-center lg:justify-start">
+                                <div className="w-8 h-8 rounded-full bg-[#56876D] flex items-center justify-center">
+                                    <Globe className="w-4 h-4 text-white" />
+                                </div>
+                                <span className="text-[#565264] font-medium">Custom domain & professional branding</span>
+                            </div>
+                            <div className="flex items-center gap-3 justify-center lg:justify-start">
+                                <div className="w-8 h-8 rounded-full bg-[#56876D] flex items-center justify-center">
+                                    <User className="w-4 h-4 text-white" />
+                                </div>
+                                <span className="text-[#565264] font-medium">Developer-focused templates</span>
+                            </div>
+                        </div>
+
+                        {/* CTA */}
+                        <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                            <Button className="bg-[#56876D] hover:bg-[#56876D]/90 text-white h-12 px-8">
+                                View Live Demo
+                                <ArrowRight className="ml-2 h-4 w-4" />
+                            </Button>
+                            <Button
+                                variant="outline"
+                                className="h-12 px-8 border-[#565264] text-[#565264] hover:bg-[#565264] hover:text-white"
+                            >
+                                See Examples
+                            </Button>
+                        </div>
+                    </div>
+
+                    {/* Safari Component */}
+                    <div className="flex justify-center lg:justify-end">
+                        <div className="w-full max-w-[600px] lg:max-w-[700px]">
+                            <Safari
+                                imageSrc="/placeholder-profile.svg"
+                                url="devbran.ch/johndoe"
+                                className="drop-shadow-2xl w-full h-auto"
+                            />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {/* Background decorations */}
+            <div className="absolute top-10 left-10 w-20 h-20 bg-[#56876D]/10 rounded-full blur-xl" />
+            <div className="absolute bottom-10 right-10 w-32 h-32 bg-[#565264]/10 rounded-full blur-xl" />
+            <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-[#E8C7DE]/30 rounded-full blur-lg" />
+        </section>
+    );
+}
