@@ -13,7 +13,10 @@ import {
     NavbarButton
 } from "@/components/ui/resizable-navbar";
 import { Button } from "@/components/ui/button";
-import { IconLogin, IconUserPlus } from "@tabler/icons-react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { IconLogin, IconUserPlus, IconLogout, IconDashboard } from "@tabler/icons-react";
+import { useAuth } from "@/contexts/auth-context";
+import { toast } from "sonner";
 
 const navItems = [
     { name: "Home", link: "#" },
@@ -25,6 +28,7 @@ const navItems = [
 
 export function LandingNavbar() {
     const router = useRouter();
+    const { user, logout } = useAuth();
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     const handleMobileMenuToggle = () => {
@@ -43,6 +47,30 @@ export function LandingNavbar() {
     const handleSignupClick = () => {
         router.push("/signup");
         handleItemClick();
+    };
+
+    const handleDashboardClick = () => {
+        router.push("/dashboard");
+        handleItemClick();
+    };
+
+    const handleLogoutClick = async () => {
+        try {
+            await logout();
+            toast.success("Logged out successfully");
+            handleItemClick();
+        } catch (error) {
+            toast.error("Failed to logout");
+        }
+    };
+
+    const getInitials = (name: string) => {
+        return name
+            .split(' ')
+            .map(word => word[0])
+            .join('')
+            .toUpperCase()
+            .substring(0, 2);
     };
 
     return (
@@ -71,24 +99,56 @@ export function LandingNavbar() {
                     className="text-[#2c2937] drop-shadow-sm dark:text-white font-medium"
                 />
 
-                {/* Login Button */}
+                {/* User Actions */}
                 <div className="flex items-center space-x-2 flex-shrink-0">
-                    <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={handleLoginClick}
-                        className="text-[#2c2937] hover:bg-white/50 hover:text-[#56876D] transition-all duration-200 dark:text-white dark:hover:text-[#E8C7DE] font-medium border border-[#2c2937]/30 hover:border-[#56876D]/40 backdrop-blur-sm whitespace-nowrap"
-                    >
-                        <IconLogin className="mr-2 h-4 w-4" />
-                        Login
-                    </Button>
-                    <Button
-                        size="sm"
-                        onClick={handleSignupClick}
-                        className="text-white bg-[#56876D] hover:bg-[#56876D]/90 hover:text-white transition-all duration-200 font-medium border border-[#56876D] hover:border-[#56876D]/70 backdrop-blur-sm shadow-md whitespace-nowrap"
-                    >
-                        Sign Up
-                    </Button>
+                    {user ? (
+                        <>
+                            <Button
+                                variant="ghost"
+                                size="sm"
+                                onClick={handleDashboardClick}
+                                className="text-[#2c2937] hover:bg-white/50 hover:text-[#56876D] transition-all duration-200 dark:text-white dark:hover:text-[#E8C7DE] font-medium border border-[#2c2937]/30 hover:border-[#56876D]/40 backdrop-blur-sm whitespace-nowrap"
+                            >
+                                <IconDashboard className="mr-2 h-4 w-4" />
+                                Dashboard
+                            </Button>
+                            <div className="flex items-center space-x-2">
+                                <Avatar className="h-8 w-8">
+                                    <AvatarImage src="" />
+                                    <AvatarFallback className="bg-[#56876D] text-white text-xs">
+                                        {user.name ? getInitials(user.name) : "U"}
+                                    </AvatarFallback>
+                                </Avatar>
+                                <Button
+                                    variant="ghost"
+                                    size="sm"
+                                    onClick={handleLogoutClick}
+                                    className="text-[#2c2937] hover:bg-white/50 hover:text-red-600 transition-all duration-200 dark:text-white font-medium border border-[#2c2937]/30 hover:border-red-400 backdrop-blur-sm whitespace-nowrap"
+                                >
+                                    <IconLogout className="h-4 w-4" />
+                                </Button>
+                            </div>
+                        </>
+                    ) : (
+                        <>
+                            <Button
+                                variant="ghost"
+                                size="sm"
+                                onClick={handleLoginClick}
+                                className="text-[#2c2937] hover:bg-white/50 hover:text-[#56876D] transition-all duration-200 dark:text-white dark:hover:text-[#E8C7DE] font-medium border border-[#2c2937]/30 hover:border-[#56876D]/40 backdrop-blur-sm whitespace-nowrap"
+                            >
+                                <IconLogin className="mr-2 h-4 w-4" />
+                                Login
+                            </Button>
+                            <Button
+                                size="sm"
+                                onClick={handleSignupClick}
+                                className="text-white bg-[#56876D] hover:bg-[#56876D]/90 hover:text-white transition-all duration-200 font-medium border border-[#56876D] hover:border-[#56876D]/70 backdrop-blur-sm shadow-md whitespace-nowrap"
+                            >
+                                Sign Up
+                            </Button>
+                        </>
+                    )}
                 </div>
             </NavBody>
 
@@ -131,19 +191,58 @@ export function LandingNavbar() {
                             </a>
                         ))}
                         <div className="flex flex-col space-y-2 pt-4 border-t border-[#2c2937]/30">
-                            <Button
-                                variant="ghost"
-                                onClick={handleLoginClick}
-                                className="text-[#2c2937] hover:bg-[#E8C7DE]/40 hover:text-[#56876D] transition-all duration-200 border border-[#2c2937]/30 hover:border-[#56876D]/40 backdrop-blur-sm w-full justify-center"
-                            >
-                                Login
-                            </Button>
-                            <Button
-                                onClick={handleSignupClick}
-                                className="text-white bg-[#56876D] hover:bg-[#56876D]/90 hover:text-white transition-all duration-200 font-medium border border-[#56876D] hover:border-[#56876D]/70 backdrop-blur-sm shadow-md"
-                            >
-                                Sign Up
-                            </Button>
+                            {user ? (
+                                <>
+                                    <div className="flex items-center space-x-3 px-3 py-2">
+                                        <Avatar className="h-8 w-8">
+                                            <AvatarImage src="" />
+                                            <AvatarFallback className="bg-[#56876D] text-white text-xs">
+                                                {user.name ? getInitials(user.name) : "U"}
+                                            </AvatarFallback>
+                                        </Avatar>
+                                        <div className="flex flex-col">
+                                            <span className="text-sm font-medium text-[#2c2937]">
+                                                {user.name}
+                                            </span>
+                                            <span className="text-xs text-[#2c2937]/70">
+                                                {user.email}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <Button
+                                        variant="ghost"
+                                        onClick={handleDashboardClick}
+                                        className="text-[#2c2937] hover:bg-[#E8C7DE]/40 hover:text-[#56876D] transition-all duration-200 border border-[#2c2937]/30 hover:border-[#56876D]/40 backdrop-blur-sm w-full justify-start"
+                                    >
+                                        <IconDashboard className="mr-2 h-4 w-4" />
+                                        Dashboard
+                                    </Button>
+                                    <Button
+                                        variant="ghost"
+                                        onClick={handleLogoutClick}
+                                        className="text-[#2c2937] hover:bg-red-50 hover:text-red-600 transition-all duration-200 border border-[#2c2937]/30 hover:border-red-400 backdrop-blur-sm w-full justify-start"
+                                    >
+                                        <IconLogout className="mr-2 h-4 w-4" />
+                                        Logout
+                                    </Button>
+                                </>
+                            ) : (
+                                <>
+                                    <Button
+                                        variant="ghost"
+                                        onClick={handleLoginClick}
+                                        className="text-[#2c2937] hover:bg-[#E8C7DE]/40 hover:text-[#56876D] transition-all duration-200 border border-[#2c2937]/30 hover:border-[#56876D]/40 backdrop-blur-sm w-full justify-center"
+                                    >
+                                        Login
+                                    </Button>
+                                    <Button
+                                        onClick={handleSignupClick}
+                                        className="text-white bg-[#56876D] hover:bg-[#56876D]/90 hover:text-white transition-all duration-200 font-medium border border-[#56876D] hover:border-[#56876D]/70 backdrop-blur-sm shadow-md"
+                                    >
+                                        Sign Up
+                                    </Button>
+                                </>
+                            )}
                         </div>
                     </div>
                 </MobileNavMenu>
