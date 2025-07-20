@@ -14,7 +14,6 @@ export default function SignupPage() {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
@@ -25,11 +24,6 @@ export default function SignupPage() {
     }, [searchParams]);
 
     const handleSignUp = async () => {
-        if (password !== confirmPassword) {
-            alert("Passwords don't match!");
-            return;
-        }
-
         setIsLoading(true);
         try {
             // In a real app, this would handle authentication
@@ -135,22 +129,7 @@ export default function SignupPage() {
                                     onChange={(e) => setPassword(e.target.value)}
                                     className="bg-white/80 border-[#565264]/20 focus:border-[#56876D] focus:ring-[#56876D]/20"
                                     disabled={isLoading}
-                                />
-                            </div>
-
-                            <div className="space-y-2">
-                                <label htmlFor="confirmPassword" className="text-sm font-medium text-[#565264]">
-                                    Confirm Password
-                                </label>
-                                <Input
-                                    id="confirmPassword"
-                                    type="password"
-                                    placeholder="••••••••"
-                                    value={confirmPassword}
-                                    onChange={(e) => setConfirmPassword(e.target.value)}
-                                    className="bg-white/80 border-[#565264]/20 focus:border-[#56876D] focus:ring-[#56876D]/20"
-                                    disabled={isLoading}
-                                    onKeyPress={(e) => e.key === 'Enter' && handleSignUp()}
+                                    onKeyDown={(e) => e.key === 'Enter' && handleSignUp()}
                                 />
                             </div>
                         </div>
@@ -158,7 +137,7 @@ export default function SignupPage() {
                         <Button
                             onClick={handleSignUp}
                             className="w-full bg-[#56876D] hover:bg-[#56876D]/90 text-white"
-                            disabled={!username || !email || !password || !confirmPassword || isLoading}
+                            disabled={!username || !email || !password || isLoading}
                         >
                             {isLoading ? (
                                 <>
