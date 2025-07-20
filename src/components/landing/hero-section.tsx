@@ -15,8 +15,8 @@ export function HeroSection() {
 
     const handleCreatePage = () => {
         if (username.trim()) {
-            // Redirect to login page with username as query param
-            window.location.href = `/login?username=${encodeURIComponent(username)}`;
+            // Redirect to signup page with username as query param
+            window.location.href = `/signup?username=${encodeURIComponent(username)}`;
         }
     };
 
@@ -46,13 +46,18 @@ export function HeroSection() {
 
                     <div className="space-y-4">
                         <div className="flex flex-col sm:flex-row gap-2 max-w-md mx-auto lg:mx-0">
-                            <Input
-                                placeholder="Choose your username"
-                                value={username}
-                                onChange={(e) => setUsername(e.target.value)}
-                                className="flex-1 bg-white/80 border-[#565264]/20 focus:border-[#56876D] focus:ring-[#56876D]/20 h-12"
-                                onKeyPress={(e) => e.key === 'Enter' && handleCreatePage()}
-                            />
+                            <div className="relative flex-1">
+                                <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#565264]/70 font-medium z-10">
+                                    devbran.ch/
+                                </span>
+                                <Input
+                                    placeholder="username"
+                                    value={username}
+                                    onChange={(e) => setUsername(e.target.value)}
+                                    className="pl-[100px] bg-white/80 border-[#565264]/20 focus:border-[#56876D] focus:ring-[#56876D]/20 h-12"
+                                    onKeyPress={(e) => e.key === 'Enter' && handleCreatePage()}
+                                />
+                            </div>
                             <Button
                                 onClick={handleCreatePage}
                                 className="bg-[#56876D] hover:bg-[#56876D]/90 text-white h-12 px-6 whitespace-nowrap"

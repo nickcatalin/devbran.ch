@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 import {
     Navbar,
     NavBody,
@@ -23,6 +24,7 @@ const navItems = [
 ];
 
 export function LandingNavbar() {
+    const router = useRouter();
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     const handleMobileMenuToggle = () => {
@@ -33,22 +35,32 @@ export function LandingNavbar() {
         setIsMobileMenuOpen(false);
     };
 
+    const handleLoginClick = () => {
+        router.push("/login");
+        handleItemClick();
+    };
+
+    const handleSignupClick = () => {
+        router.push("/signup");
+        handleItemClick();
+    };
+
     return (
         <Navbar className="fixed top-0 left-0 right-0 z-50">
             {/* Desktop Navigation */}
             <NavBody className="border border-white/50 shadow-lg">
                 {/* Logo */}
-                <div className="flex items-center space-x-2">
-                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-[#565264] to-[#56876D] shadow-lg">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 2L2 7V17L12 22L22 17V7L12 2Z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                            <path d="M12 12L2 7" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                            <path d="M12 12V22" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                            <path d="M22 7L12 12" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
+                <div className="flex items-center space-x-2 flex-shrink-0">
+                    <div className="flex h-8 w-8 items-center justify-center">
+                        <img
+                            src="/devbranch-logo.svg"
+                            alt="DevBranch Logo"
+                            className="h-8 w-8 object-contain"
+                        />
                     </div>
-                    <span className="text-lg font-bold text-[#2c2937] drop-shadow-sm dark:text-white">
-                        DevBran.ch
+                    <span className="text-lg font-bold text-[#2c2937] drop-shadow-sm dark:text-white whitespace-nowrap">
+                        <span className="text-[#565264]">Dev</span>
+                        <span className="text-[#56876D]">Bran.ch</span>
                     </span>
                 </div>
 
@@ -60,18 +72,20 @@ export function LandingNavbar() {
                 />
 
                 {/* Login Button */}
-                <div className="flex items-center space-x-3">
+                <div className="flex items-center space-x-2 flex-shrink-0">
                     <Button
                         variant="ghost"
                         size="sm"
-                        className="text-[#2c2937] hover:bg-white/50 hover:text-[#56876D] transition-all duration-200 dark:text-white dark:hover:text-[#E8C7DE] font-medium border border-[#2c2937]/30 hover:border-[#56876D]/40 backdrop-blur-sm"
+                        onClick={handleLoginClick}
+                        className="text-[#2c2937] hover:bg-white/50 hover:text-[#56876D] transition-all duration-200 dark:text-white dark:hover:text-[#E8C7DE] font-medium border border-[#2c2937]/30 hover:border-[#56876D]/40 backdrop-blur-sm whitespace-nowrap"
                     >
                         <IconLogin className="mr-2 h-4 w-4" />
                         Login
                     </Button>
                     <Button
                         size="sm"
-                        className="bg-gradient-to-r from-[#565264] to-[#56876D] text-white hover:from-[#56876D] hover:to-[#565264] hover:shadow-lg hover:scale-105 transition-all duration-300 shadow-md"
+                        onClick={handleSignupClick}
+                        className="text-white bg-[#56876D] hover:bg-[#56876D]/90 hover:text-white transition-all duration-200 font-medium border border-[#56876D] hover:border-[#56876D]/70 backdrop-blur-sm shadow-md whitespace-nowrap"
                     >
                         Sign Up
                     </Button>
@@ -82,17 +96,17 @@ export function LandingNavbar() {
             <MobileNav className="border border-white/50 shadow-lg">
                 <MobileNavHeader>
                     {/* Mobile Logo */}
-                    <div className="flex items-center space-x-2">
-                        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-[#565264] to-[#56876D] shadow-lg">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12 2L2 7V17L12 22L22 17V7L12 2Z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                <path d="M12 12L2 7" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                <path d="M12 12V22" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                <path d="M22 7L12 12" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                            </svg>
+                    <div className="flex items-center space-x-2 flex-shrink-0 min-w-0">
+                        <div className="flex h-8 w-8 items-center justify-center flex-shrink-0">
+                            <img
+                                src="/devbranch-logo.svg"
+                                alt="DevBranch Logo"
+                                className="h-8 w-8 object-contain"
+                            />
                         </div>
-                        <span className="text-lg font-bold text-[#2c2937] drop-shadow-sm dark:text-white">
-                            DevBran.ch
+                        <span className="text-lg font-bold text-[#2c2937] drop-shadow-sm dark:text-white whitespace-nowrap">
+                            <span className="text-[#565264]">Dev</span>
+                            <span className="text-[#56876D]">Bran.ch</span>
                         </span>
                     </div>
 
@@ -119,15 +133,14 @@ export function LandingNavbar() {
                         <div className="flex flex-col space-y-2 pt-4 border-t border-[#2c2937]/30">
                             <Button
                                 variant="ghost"
-                                className="justify-start text-[#2c2937] hover:bg-[#E8C7DE]/40 hover:text-[#56876D] transition-all duration-200 border border-[#2c2937]/30 hover:border-[#56876D]/40 backdrop-blur-sm"
-                                onClick={handleItemClick}
+                                onClick={handleLoginClick}
+                                className="text-[#2c2937] hover:bg-[#E8C7DE]/40 hover:text-[#56876D] transition-all duration-200 border border-[#2c2937]/30 hover:border-[#56876D]/40 backdrop-blur-sm w-full justify-center"
                             >
-                                <IconLogin className="mr-2 h-4 w-4" />
                                 Login
                             </Button>
                             <Button
-                                className="bg-gradient-to-r from-[#565264] to-[#56876D] text-white hover:from-[#56876D] hover:to-[#565264] hover:shadow-lg transition-all duration-300 shadow-md"
-                                onClick={handleItemClick}
+                                onClick={handleSignupClick}
+                                className="text-white bg-[#56876D] hover:bg-[#56876D]/90 hover:text-white transition-all duration-200 font-medium border border-[#56876D] hover:border-[#56876D]/70 backdrop-blur-sm shadow-md"
                             >
                                 Sign Up
                             </Button>

@@ -9,8 +9,8 @@ export function CtaSection() {
 
     const handleCreatePage = () => {
         if (username.trim()) {
-            // Redirect to login page with username as query param
-            window.location.href = `/login?username=${encodeURIComponent(username)}`;
+            // Redirect to signup page with username as query param
+            window.location.href = `/signup?username=${encodeURIComponent(username)}`;
         }
     };
 
@@ -26,13 +26,18 @@ export function CtaSection() {
                     </p>
 
                     <div className="flex gap-2 max-w-md mx-auto">
-                        <Input
-                            placeholder="Choose your username"
-                            value={username}
-                            onChange={(e) => setUsername(e.target.value)}
-                            className="flex-1 bg-white/90 border-white/20 focus:border-white focus:ring-white/20"
-                            onKeyPress={(e) => e.key === 'Enter' && handleCreatePage()}
-                        />
+                        <div className="relative flex-1">
+                            <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#565264]/70 font-medium z-10">
+                                devbran.ch/
+                            </span>
+                            <Input
+                                placeholder="username"
+                                value={username}
+                                onChange={(e) => setUsername(e.target.value)}
+                                className="pl-[100px] bg-white/90 border-white/20 focus:border-white focus:ring-white/20"
+                                onKeyPress={(e) => e.key === 'Enter' && handleCreatePage()}
+                            />
+                        </div>
                         <Button
                             onClick={handleCreatePage}
                             className="bg-[#565264] hover:bg-[#565264]/90 text-white"

@@ -90,7 +90,7 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
         boxShadow: visible
           ? "0 0 24px rgba(34, 42, 53, 0.06), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 42, 53, 0.04), 0 0 4px rgba(34, 42, 53, 0.08), 0 16px 68px rgba(47, 48, 55, 0.05), 0 1px 0 rgba(255, 255, 255, 0.1) inset"
           : "0 4px 20px rgba(86, 82, 100, 0.1), 0 1px 3px rgba(86, 82, 100, 0.1)",
-        width: visible ? "60%" : "100%",
+        width: visible ? "80%" : "100%",
         y: visible ? 20 : 0,
       }}
       transition={{
@@ -99,10 +99,10 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
         damping: 50,
       }}
       style={{
-        minWidth: "300px",
+        minWidth: "600px",
       }}
       className={cn(
-        "relative z-[60] mx-auto hidden w-full max-w-7xl flex-row items-center justify-between self-start rounded-full px-4 py-2 lg:flex",
+        "relative z-[60] mx-auto hidden w-full max-w-7xl flex-row items-center justify-between self-start rounded-full px-6 py-2 lg:flex",
         // Adaptive background that responds to the gradient behind
         "bg-gradient-to-r from-white/70 via-white/60 to-white/70",
         "before:absolute before:inset-0 before:rounded-full before:bg-gradient-to-r before:from-[#E7EBC5]/30 before:via-transparent before:to-[#E8C7DE]/30 before:opacity-50",
@@ -113,7 +113,7 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
         className,
       )}
     >
-      <div className="relative z-10 flex w-full items-center justify-between">
+      <div className="relative z-10 flex w-full items-center justify-between gap-4">
         {children}
       </div>
     </motion.div>
@@ -160,10 +160,10 @@ export const MobileNav = ({ children, className, visible }: MobileNavProps) => {
         boxShadow: visible
           ? "0 0 24px rgba(34, 42, 53, 0.06), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 42, 53, 0.04), 0 0 4px rgba(34, 42, 53, 0.08), 0 16px 68px rgba(47, 48, 55, 0.05), 0 1px 0 rgba(255, 255, 255, 0.1) inset"
           : "0 4px 20px rgba(86, 82, 100, 0.1), 0 1px 3px rgba(86, 82, 100, 0.1)",
-        width: visible ? "90%" : "100%",
-        paddingRight: visible ? "12px" : "0px",
-        paddingLeft: visible ? "12px" : "0px",
-        borderRadius: visible ? "4px" : "2rem",
+        width: visible ? "95%" : "100%",
+        paddingRight: visible ? "16px" : "0px",
+        paddingLeft: visible ? "16px" : "0px",
+        borderRadius: "2rem", // Keep consistent rounded shape
         y: visible ? 20 : 0,
       }}
       transition={{
@@ -171,8 +171,11 @@ export const MobileNav = ({ children, className, visible }: MobileNavProps) => {
         stiffness: 200,
         damping: 50,
       }}
+      style={{
+        minWidth: "320px", // Ensure minimum width to prevent overlap
+      }}
       className={cn(
-        "relative z-50 mx-auto flex w-full max-w-[calc(100vw-2rem)] flex-col items-center justify-between px-0 py-2 lg:hidden",
+        "relative z-50 mx-auto flex w-full max-w-[calc(100vw-1rem)] flex-col items-center justify-between px-0 py-2 lg:hidden rounded-full",
         // Adaptive background for mobile
         "bg-gradient-to-r from-white/70 via-white/60 to-white/70",
         "before:absolute before:inset-0 before:rounded-full before:bg-gradient-to-r before:from-[#E7EBC5]/30 before:via-transparent before:to-[#E8C7DE]/30 before:opacity-50",
@@ -197,7 +200,7 @@ export const MobileNavHeader = ({
   return (
     <div
       className={cn(
-        "flex w-full flex-row items-center justify-between",
+        "flex w-full flex-row items-center justify-between px-4 py-2",
         className,
       )}
     >
@@ -249,10 +252,17 @@ export const MobileNavToggle = ({
   isOpen: boolean;
   onClick: () => void;
 }) => {
-  return isOpen ? (
-    <IconX className="text-black dark:text-white" onClick={onClick} />
-  ) : (
-    <IconMenu2 className="text-black dark:text-white" onClick={onClick} />
+  return (
+    <button
+      onClick={onClick}
+      className="p-2 hover:bg-white/20 rounded-md transition-colors duration-200 flex-shrink-0"
+    >
+      {isOpen ? (
+        <IconX className="h-6 w-6 text-[#2c2937] dark:text-white" />
+      ) : (
+        <IconMenu2 className="h-6 w-6 text-[#2c2937] dark:text-white" />
+      )}
+    </button>
   );
 };
 
