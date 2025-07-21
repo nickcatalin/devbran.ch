@@ -17,6 +17,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { IconLogin, IconUserPlus, IconLogout, IconDashboard } from "@tabler/icons-react";
 import { useAuth } from "@/contexts/auth-context";
 import { toast } from "sonner";
+import { analytics } from "@/lib/posthog";
 
 const navItems = [
     { name: "Home", link: "#" },
@@ -40,11 +41,13 @@ export function LandingNavbar() {
     };
 
     const handleLoginClick = () => {
+        analytics.buttonClick('login', 'navbar');
         router.push("/login");
         handleItemClick();
     };
 
     const handleSignupClick = () => {
+        analytics.buttonClick('signup', 'navbar');
         router.push("/signup");
         handleItemClick();
     };

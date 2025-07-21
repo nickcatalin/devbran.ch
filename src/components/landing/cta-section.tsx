@@ -3,12 +3,15 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ArrowRight, Shield, Users, Star } from "lucide-react";
+import { analytics } from "@/lib/posthog";
 
 export function CtaSection() {
     const [username, setUsername] = useState("");
 
     const handleCreatePage = () => {
         if (username.trim()) {
+            analytics.buttonClick('get_started_cta', 'hero_section');
+            analytics.track('cta_username_entered', { username: username.trim() });
             // Redirect to signup page with username as query param
             window.location.href = `/signup?username=${encodeURIComponent(username)}`;
         }

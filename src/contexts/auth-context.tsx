@@ -3,6 +3,7 @@
 import { createContext, useContext, useEffect, useState, useRef } from "react";
 import { Models, OAuthProvider, ID } from "appwrite";
 import { account } from "@/lib/appwrite";
+import { analytics } from "@/lib/posthog";
 
 interface AuthContextType {
     user: Models.User<Models.Preferences> | null;
@@ -77,6 +78,12 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
             const currentUser = await account.get();
             if (isMountedRef.current && !isLoggingOut) {
                 setUser(currentUser);
+                // Identify user in PostHog when auth state is checked
+                analytics.identifyUser(
+                    currentUser.email,
+                    currentUser.name,
+                    currentUser.$id
+                );
             }
         } catch (error: any) {
             if (!isMountedRef.current || isLoggingOut) return;
@@ -102,8 +109,15 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
             await account.createEmailPasswordSession(email, password);
             const currentUser = await account.get();
             setUser(currentUser);
+            analytics.login('email');
+            analytics.identifyUser(
+                currentUser.email,
+                currentUser.name,
+                currentUser.$id
+            );
         } catch (error: any) {
             console.error("Login error:", error);
+            analytics.captureException(error, { context: 'login' });
             throw error;
         }
     };
@@ -114,6 +128,12 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
             await account.createEmailPasswordSession(email, password);
             const currentUser = await account.get();
             setUser(currentUser);
+            analytics.signUp('email');
+            analytics.identifyUser(
+                currentUser.email,
+                currentUser.name,
+                currentUser.$id
+            );
 
             // Automatically send email verification after successful registration
             try {
@@ -126,6 +146,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
             }
         } catch (error: any) {
             console.error("Registration error:", error);
+            analytics.captureException(error, { context: 'registration' });
             throw error;
         }
     };
@@ -133,12 +154,14 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     const logout = async () => {
         setIsLoggingOut(true);
         try {
+            analytics.logout();
             // Clear user state immediately to prevent other calls
             setUser(null);
             await account.deleteSession("current");
         } catch (error: any) {
             // Even if logout fails, ensure user state is cleared
             console.warn("Logout error:", error);
+            analytics.captureException(error, { context: 'logout' });
             setUser(null);
         } finally {
             // Keep isLoggingOut true for a short time to prevent race conditions
@@ -217,6 +240,12 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
             // Refresh user data to get updated verification status
             const currentUser = await account.get();
             setUser(currentUser);
+            // Update user identification after email verification
+            analytics.identifyUser(
+                currentUser.email,
+                currentUser.name,
+                currentUser.$id
+            );
         } catch (error: any) {
             console.error("Email verification completion error:", error);
             throw error;
@@ -241,6 +270,12 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
             await account.createSession(userId, secret);
             const currentUser = await account.get();
             setUser(currentUser);
+            analytics.login('magic_url');
+            analytics.identifyUser(
+                currentUser.email,
+                currentUser.name,
+                currentUser.$id
+            );
         } catch (error: any) {
             console.error("Magic URL login error:", error);
             throw error;
@@ -278,6 +313,12 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
             if (isMountedRef.current && !isLoggingOut) {
                 const currentUser = await account.get();
                 setUser(currentUser);
+                // Re-identify user after session refresh
+                analytics.identifyUser(
+                    currentUser.email,
+                    currentUser.name,
+                    currentUser.$id
+                );
             }
         } catch (error: any) {
             if (!isMountedRef.current || isLoggingOut) return;
