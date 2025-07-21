@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
-import { ArrowLeft, Github, LogIn } from "lucide-react";
+import { ArrowLeft, Github, LogIn, Mail } from "lucide-react";
 import { useAuth } from "@/contexts/auth-context";
 import { toast } from "sonner";
 
@@ -208,6 +208,26 @@ export default function LoginPage() {
                             <Github className="mr-2 h-4 w-4" />
                             Continue with GitHub
                         </Button>
+
+                        <div className="relative">
+                            <div className="absolute inset-0 flex items-center">
+                                <Separator className="w-full bg-[#565264]/20" />
+                            </div>
+                            <div className="relative flex justify-center text-xs uppercase">
+                                <span className="bg-white px-2 text-[#565264]/60">or</span>
+                            </div>
+                        </div>
+
+                        <Link href="/magic-url" className="block">
+                            <Button
+                                variant="outline"
+                                className="w-full border-[#56876D] text-[#56876D] hover:bg-[#56876D] hover:text-white"
+                                disabled={isLoading}
+                            >
+                                <Mail className="mr-2 h-4 w-4" />
+                                Sign in with Magic Link
+                            </Button>
+                        </Link>
 
                         <p className="text-center text-sm text-[#565264]/80">
                             Don't have an account?{" "}

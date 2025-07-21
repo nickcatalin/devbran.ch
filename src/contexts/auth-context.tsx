@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useContext, useEffect, useState, useRef } from "react";
-import { Models, OAuthProvider } from "appwrite";
+import { Models, OAuthProvider, ID } from "appwrite";
 import { account } from "@/lib/appwrite";
 
 interface AuthContextType {
@@ -18,6 +18,8 @@ interface AuthContextType {
     verifyEmail: (userId: string, secret: string) => Promise<void>;
     getCurrentSession: () => Promise<Models.Session | null>;
     refreshOAuthSession: (sessionId?: string) => Promise<void>;
+    sendMagicURL: (email: string) => Promise<void>;
+    loginWithMagicURL: (userId: string, secret: string) => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -44,7 +46,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         if (!isLoggingOut) {
             checkAuthState();
         }
-        
+
         // Cleanup function to prevent state updates after unmount
         return () => {
             isMountedRef.current = false;
@@ -53,14 +55,14 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
     // Helper function to detect authentication errors
     const isAuthError = (error: any): boolean => {
-        return error?.code === 401 || 
-               error?.type === 'user_unauthorized' || 
-               error?.type === 'general_unauthorized_scope' ||
-               (error?.message && (
-                   error.message.includes('missing scope') ||
-                   error.message.includes('unauthorized') ||
-                   error.message.includes('User (role: guests)')
-               ));
+        return error?.code === 401 ||
+            error?.type === 'user_unauthorized' ||
+            error?.type === 'general_unauthorized_scope' ||
+            (error?.message && (
+                error.message.includes('missing scope') ||
+                error.message.includes('unauthorized') ||
+                error.message.includes('User (role: guests)')
+            ));
     };
 
     // Helper function to check if auth operations are safe to perform
@@ -70,7 +72,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
     const checkAuthState = async () => {
         if (!isMountedRef.current || isLoggingOut) return;
-        
+
         try {
             const currentUser = await account.get();
             if (isMountedRef.current && !isLoggingOut) {
@@ -78,7 +80,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
             }
         } catch (error: any) {
             if (!isMountedRef.current || isLoggingOut) return;
-            
+
             // Check if it's an authentication error
             if (isAuthError(error)) {
                 // User is not authenticated or session expired
@@ -221,6 +223,30 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         }
     };
 
+    const sendMagicURL = async (email: string) => {
+        try {
+            await account.createMagicURLToken(
+                ID.unique(),
+                email,
+                `${window.location.origin}/magic-login` // Redirect URL after clicking magic link
+            );
+        } catch (error: any) {
+            console.error("Magic URL creation error:", error);
+            throw error;
+        }
+    };
+
+    const loginWithMagicURL = async (userId: string, secret: string) => {
+        try {
+            await account.createSession(userId, secret);
+            const currentUser = await account.get();
+            setUser(currentUser);
+        } catch (error: any) {
+            console.error("Magic URL login error:", error);
+            throw error;
+        }
+    };
+
     const getCurrentSession = async (): Promise<Models.Session | null> => {
         // Don't attempt to get session if we're in an unsafe state
         if (!canPerformAuthOperation() || !user || !isMountedRef.current) {
@@ -255,7 +281,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
             }
         } catch (error: any) {
             if (!isMountedRef.current || isLoggingOut) return;
-            
+
             // Handle auth errors gracefully
             if (isAuthError(error)) {
                 console.warn("OAuth session refresh failed - user not authenticated");
@@ -281,6 +307,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         verifyEmail,
         getCurrentSession,
         refreshOAuthSession,
+        sendMagicURL,
+        loginWithMagicURL,
     };
 
     return (
