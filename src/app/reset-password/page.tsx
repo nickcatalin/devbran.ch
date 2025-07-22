@@ -14,7 +14,7 @@ import { account } from "@/lib/appwrite";
 export default function ResetPasswordPage() {
     const router = useRouter();
     const searchParams = useSearchParams();
-    const { user } = useAuth();
+    const { user, logout } = useAuth();
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [isLoading, setIsLoading] = useState(false);
@@ -23,11 +23,6 @@ export default function ResetPasswordPage() {
     const [secret, setSecret] = useState("");
 
     useEffect(() => {
-        // Redirect if already logged in
-        if (user) {
-            router.push("/dashboard");
-        }
-
         // Get the userId and secret from URL parameters
         const userIdParam = searchParams.get("userId");
         const secretParam = searchParams.get("secret");
@@ -40,6 +35,12 @@ export default function ResetPasswordPage() {
 
         setUserId(userIdParam);
         setSecret(secretParam);
+
+        // Only redirect if already logged in AND no valid reset parameters
+        // This allows password reset even when authenticated
+        if (user && (!userIdParam || !secretParam)) {
+            router.push("/dashboard");
+        }
     }, [user, router, searchParams]);
 
     const handleResetPassword = async () => {
@@ -63,6 +64,16 @@ export default function ResetPasswordPage() {
             await account.updateRecovery(userId, secret, password);
             setPasswordReset(true);
             toast.success("Password reset successfully!");
+
+            // If user was already logged in, log them out to ensure they use the new password
+            if (user) {
+                try {
+                    await logout();
+                } catch (error) {
+                    // Ignore logout errors as the password was successfully reset
+                    console.warn("Could not log out after password reset:", error);
+                }
+            }
         } catch (error: any) {
             console.error("Password reset failed:", error);
             toast.error(error.message || "Failed to reset password");
@@ -122,6 +133,13 @@ export default function ResetPasswordPage() {
                                     <p className="text-sm text-[#565264]/80 text-center">
                                         Enter your new password below.
                                     </p>
+                                    {user && (
+                                        <div className="p-3 bg-[#56876D]/10 border border-[#56876D]/20 rounded-md">
+                                            <p className="text-xs text-[#565264]/70 text-center">
+                                                You're currently signed in. After resetting your password, you'll be logged out and need to sign in again with your new password.
+                                            </p>
+                                        </div>
+                                    )}
                                 </div>
 
                                 <div className="space-y-4">

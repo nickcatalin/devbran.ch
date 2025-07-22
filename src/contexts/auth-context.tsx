@@ -308,8 +308,15 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         }
 
         try {
-            await account.updateSession(sessionId);
-            // Optionally refresh user data after session update
+            // Get the current session first to check if it's still valid
+            const currentSession = await account.getSession(sessionId);
+
+            if (!currentSession) {
+                console.warn("No current session found");
+                setUser(null);
+                return;
+            }
+
             if (isMountedRef.current && !isLoggingOut) {
                 const currentUser = await account.get();
                 setUser(currentUser);
