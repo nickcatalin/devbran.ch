@@ -49,31 +49,31 @@ const navigationItems = [
     {
         title: "Profile",
         icon: User,
-        href: "/dashboard/profile",
+        href: "/profile",
         badge: null
     },
     {
         title: "Projects",
         icon: Folder,
-        href: "/dashboard/projects",
+        href: "/projects",
         badge: "12"
     },
     {
         title: "Analytics",
         icon: BarChart3,
-        href: "/dashboard/analytics",
+        href: "/analytics",
         badge: null
     },
     {
         title: "Connections",
         icon: Users,
-        href: "/dashboard/connections",
+        href: "/connections",
         badge: "3"
     },
     {
         title: "Messages",
         icon: MessageSquare,
-        href: "/dashboard/messages",
+        href: "/messages",
         badge: "2"
     }
 ];
@@ -82,13 +82,13 @@ const secondaryItems = [
     {
         title: "Notifications",
         icon: Bell,
-        href: "/dashboard/notifications",
+        href: "/notifications",
         badge: "5"
     },
     {
         title: "Settings",
         icon: Settings,
-        href: "/dashboard/settings",
+        href: "/settings",
         badge: null
     }
 ];
@@ -279,7 +279,7 @@ export function DashboardSidebar() {
                                     className="w-full justify-start text-xs border-[#565264]/20 hover:bg-[#565264]/10"
                                     asChild
                                 >
-                                    <Link href="/dashboard/profile">
+                                    <Link href="/profile">
                                         <User className="mr-2 h-3 w-3" />
                                         View Profile
                                     </Link>

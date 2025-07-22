@@ -119,7 +119,7 @@ export function DashboardHeader() {
 
                             <DropdownMenuSeparator className="bg-[#565264]/20" />
                             <DropdownMenuItem asChild>
-                                <Link href="/dashboard/notifications" className="w-full text-center text-[#56876D] font-medium">
+                                <Link href="/notifications" className="w-full text-center text-[#56876D] font-medium">
                                     View all notifications
                                 </Link>
                             </DropdownMenuItem>
@@ -160,21 +160,21 @@ export function DashboardHeader() {
                             <DropdownMenuSeparator className="bg-[#565264]/20" />
 
                             <DropdownMenuItem asChild className="hover:bg-[#E7EBC5]/20">
-                                <Link href="/dashboard/profile">
+                                <Link href="/profile">
                                     <User className="mr-2 h-4 w-4 text-[#565264]" />
                                     <span className="text-[#565264]">Profile</span>
                                 </Link>
                             </DropdownMenuItem>
 
                             <DropdownMenuItem asChild className="hover:bg-[#E7EBC5]/20">
-                                <Link href="/dashboard/settings">
+                                <Link href="/settings">
                                     <Settings className="mr-2 h-4 w-4 text-[#565264]" />
                                     <span className="text-[#565264]">Settings</span>
                                 </Link>
                             </DropdownMenuItem>
 
                             <DropdownMenuItem asChild className="hover:bg-[#E7EBC5]/20">
-                                <Link href="/dashboard/profile" target="_blank">
+                                <Link href="/profile" target="_blank">
                                     <Globe className="mr-2 h-4 w-4 text-[#565264]" />
                                     <span className="text-[#565264]">Public Profile</span>
                                 </Link>
