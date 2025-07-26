@@ -52,10 +52,10 @@ export const ProtectedRoute = ({
 
     if (loading) {
         return (
-            <div className="min-h-screen bg-gradient-to-br from-[#E7EBC5] to-[#E8C7DE] flex items-center justify-center">
+            <div className="min-h-screen bg-background flex items-center justify-center">
                 <div className="flex flex-col items-center space-y-4">
-                    <div className="w-8 h-8 border-4 border-[#56876D] border-t-transparent rounded-full animate-spin"></div>
-                    <p className="text-[#565264] font-medium">Loading...</p>
+                    <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+                    <p className="text-foreground font-medium">Loading...</p>
                 </div>
             </div>
         );
@@ -64,18 +64,18 @@ export const ProtectedRoute = ({
     // Show verification required page if user is not verified and verification is required
     if (user && requireVerification && !user.emailVerification) {
         return (
-            <div className="min-h-screen bg-gradient-to-br from-[#E7EBC5] to-[#E8C7DE] flex items-center justify-center p-4">
+            <div className="min-h-screen bg-background flex items-center justify-center p-4">
                 <div className="w-full max-w-md">
-                    <div className="bg-white/90 backdrop-blur-sm border border-[#565264]/10 rounded-lg p-6 space-y-6">
+                    <div className="bg-card border rounded-lg p-6 space-y-6">
                         <div className="text-center space-y-4">
                             <div className="flex justify-center">
-                                <Mail className="h-16 w-16 text-[#56876D]" />
+                                <Mail className="h-16 w-16 text-primary" />
                             </div>
                             <div className="space-y-2">
-                                <h2 className="text-2xl font-bold text-[#565264]">
+                                <h2 className="text-2xl font-bold text-card-foreground">
                                     Email Verification Required
                                 </h2>
-                                <p className="text-[#565264]/70">
+                                <p className="text-muted-foreground">
                                     Please verify your email address to access this feature.
                                 </p>
                             </div>
@@ -92,11 +92,11 @@ export const ProtectedRoute = ({
                             <Button
                                 onClick={handleSendVerification}
                                 disabled={isVerificationSending}
-                                className="w-full bg-[#56876D] hover:bg-[#56876D]/90 text-white"
+                                className="w-full"
                             >
                                 {isVerificationSending ? (
                                     <>
-                                        <div className="mr-2 h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
+                                        <div className="mr-2 h-4 w-4 animate-spin rounded-full border-2 border-primary-foreground border-t-transparent" />
                                         Sending...
                                     </>
                                 ) : (
@@ -110,7 +110,7 @@ export const ProtectedRoute = ({
                             <Button
                                 variant="outline"
                                 onClick={() => router.push("/dashboard")}
-                                className="w-full border-[#565264]/20 text-[#565264] hover:bg-[#565264]/5"
+                                className="w-full"
                             >
                                 Go to Dashboard
                             </Button>

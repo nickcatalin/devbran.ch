@@ -70,13 +70,13 @@ export default function VerifyEmailPage() {
             return (
                 <div className="text-center space-y-4">
                     <div className="flex justify-center">
-                        <Loader2 className="h-16 w-16 text-[#56876D] animate-spin" />
+                        <Loader2 className="h-16 w-16 text-primary animate-spin" />
                     </div>
                     <div className="space-y-2">
-                        <p className="text-[#565264] font-medium">
+                        <p className="text-foreground font-medium">
                             Verifying your email...
                         </p>
-                        <p className="text-sm text-[#565264]/70">
+                        <p className="text-sm text-muted-foreground">
                             Please wait while we verify your email address.
                         </p>
                     </div>
@@ -91,24 +91,24 @@ export default function VerifyEmailPage() {
                         <CheckCircle className="h-16 w-16 text-green-600" />
                     </div>
                     <div className="space-y-2">
-                        <p className="text-[#565264] font-medium">
+                        <p className="text-foreground font-medium">
                             Email verified successfully!
                         </p>
-                        <p className="text-sm text-[#565264]/70">
+                        <p className="text-sm text-muted-foreground">
                             Your email address has been verified. You can now access all features of your account.
                         </p>
                     </div>
                     <div className="flex flex-col sm:flex-row gap-3 justify-center">
                         <Button
                             onClick={() => router.push("/dashboard")}
-                            className="bg-[#56876D] hover:bg-[#56876D]/90 text-white"
+                            className="bg-secondary hover:bg-accent text-secondary-foreground"
                         >
                             Go to Dashboard
                         </Button>
                         <Button
                             variant="outline"
                             onClick={() => router.push("/")}
-                            className="border-[#565264]/20 text-[#565264] hover:bg-[#565264]/5"
+                            className="border-border text-foreground hover:bg-muted"
                         >
                             Back to Home
                         </Button>
@@ -125,10 +125,10 @@ export default function VerifyEmailPage() {
                             <AlertCircle className="h-16 w-16 text-red-600" />
                         </div>
                         <div className="space-y-2">
-                            <p className="text-[#565264] font-medium">
+                            <p className="text-foreground font-medium">
                                 Email verification failed
                             </p>
-                            <p className="text-sm text-[#565264]/70">
+                            <p className="text-sm text-muted-foreground">
                                 The verification link may be invalid or expired.
                             </p>
                         </div>
@@ -148,7 +148,7 @@ export default function VerifyEmailPage() {
                             <Button
                                 onClick={handleResendVerification}
                                 disabled={isResending}
-                                className="w-full bg-[#56876D] hover:bg-[#56876D]/90 text-white"
+                                className="w-full bg-secondary hover:bg-accent text-secondary-foreground"
                             >
                                 {isResending ? (
                                     <>
@@ -165,7 +165,7 @@ export default function VerifyEmailPage() {
                         ) : (
                             <Button
                                 onClick={() => router.push("/login")}
-                                className="w-full bg-[#56876D] hover:bg-[#56876D]/90 text-white"
+                                className="w-full bg-secondary hover:bg-accent text-secondary-foreground"
                             >
                                 Sign In to Resend
                             </Button>
@@ -174,7 +174,7 @@ export default function VerifyEmailPage() {
                         <Button
                             variant="outline"
                             onClick={() => router.push("/")}
-                            className="w-full border-[#565264]/20 text-[#565264] hover:bg-[#565264]/5"
+                            className="w-full border-border text-foreground hover:bg-muted"
                         >
                             Back to Home
                         </Button>
@@ -188,21 +188,21 @@ export default function VerifyEmailPage() {
             <div className="space-y-4">
                 <div className="text-center space-y-4">
                     <div className="flex justify-center">
-                        <Mail className="h-16 w-16 text-[#56876D]" />
+                        <Mail className="h-16 w-16 text-secondary" />
                     </div>
                     <div className="space-y-2">
-                        <p className="text-[#565264] font-medium">
+                        <p className="text-foreground font-medium">
                             Verify your email address
                         </p>
-                        <p className="text-sm text-[#565264]/70">
+                        <p className="text-sm text-muted-foreground">
                             Click the verification link in your email to verify your account.
                         </p>
                     </div>
                 </div>
 
-                <Alert className="border-[#56876D]/20 bg-[#56876D]/5">
-                    <Mail className="h-4 w-4 text-[#56876D]" />
-                    <AlertDescription className="text-[#565264]">
+                <Alert className="border-secondary bg-secondary">
+                    <Mail className="h-4 w-4 text-secondary" />
+                    <AlertDescription className="text-foreground">
                         Check your email inbox and spam folder for the verification link.
                     </AlertDescription>
                 </Alert>
@@ -212,7 +212,7 @@ export default function VerifyEmailPage() {
                         <Button
                             onClick={handleResendVerification}
                             disabled={isResending}
-                            className="w-full bg-[#56876D] hover:bg-[#56876D]/90 text-white"
+                            className="w-full bg-secondary hover:bg-accent text-secondary-foreground"
                         >
                             {isResending ? (
                                 <>
@@ -236,7 +236,7 @@ export default function VerifyEmailPage() {
                     ) : (
                         <Button
                             onClick={() => router.push("/login")}
-                            className="w-full bg-[#56876D] hover:bg-[#56876D]/90 text-white"
+                            className="w-full bg-secondary hover:bg-accent text-secondary-foreground"
                         >
                             Sign In to Verify Email
                         </Button>
@@ -245,7 +245,7 @@ export default function VerifyEmailPage() {
                     <Button
                         variant="outline"
                         onClick={() => router.push("/")}
-                        className="w-full border-[#565264]/20 text-[#565264] hover:bg-[#565264]/5"
+                        className="w-full border-border text-foreground hover:bg-muted"
                     >
                         Back to Home
                     </Button>
@@ -255,25 +255,25 @@ export default function VerifyEmailPage() {
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-[#E7EBC5] to-[#E8C7DE] flex items-center justify-center p-4">
+        <div className="min-h-screen bg-background flex items-center justify-center p-4">
             <div className="w-full max-w-md">
                 <div className="mb-8">
                     <Link
                         href="/"
-                        className="inline-flex items-center gap-2 text-[#565264] hover:text-[#56876D] transition-colors"
+                        className="inline-flex items-center gap-2 text-foreground hover:text-secondary transition-colors"
                     >
                         <ArrowLeft className="h-4 w-4" />
                         Back to home
                     </Link>
                 </div>
 
-                <Card className="bg-white/90 backdrop-blur-sm border-[#565264]/10">
+                <Card className="bg-card border-border">
                     <CardHeader className="text-center space-y-4">
                         <CardTitle className="text-3xl font-bold">
-                            <span className="text-[#565264]">Dev</span>
-                            <span className="text-[#56876D]">Bran.ch</span>
+                            <span className="text-foreground">Dev</span>
+                            <span className="text-secondary">Bran.ch</span>
                         </CardTitle>
-                        <CardDescription className="text-[#565264]/80">
+                        <CardDescription className="text-muted-foreground">
                             Email Verification
                         </CardDescription>
                     </CardHeader>

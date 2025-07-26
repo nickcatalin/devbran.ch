@@ -28,21 +28,21 @@ export function FaqSection() {
         <section id="faq" className="py-20 bg-white">
             <div className="container mx-auto px-4 max-w-4xl">
                 <div className="text-center mb-16">
-                    <h2 className="text-4xl lg:text-5xl font-bold text-[#565264] mb-4">
+                    <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-4">
                         Frequently Asked Questions
                     </h2>
-                    <p className="text-xl text-[#565264]/80">
+                    <p className="text-xl text-muted-foreground">
                         Everything you need to know about DevBran.ch
                     </p>
                 </div>
 
                 <Accordion type="single" collapsible className="space-y-4">
                     {faqItems.map((item, index) => (
-                        <AccordionItem key={index} value={`item-${index}`} className="border-[#565264]/20">
-                            <AccordionTrigger className="text-left text-[#565264] hover:text-[#56876D]">
+                        <AccordionItem key={index} value={`item-${index}`} className="border-border">
+                            <AccordionTrigger className="text-left text-foreground hover:text-secondary">
                                 {item.question}
                             </AccordionTrigger>
-                            <AccordionContent className="text-[#565264]/80">
+                            <AccordionContent className="text-muted-foreground">
                                 {item.answer}
                             </AccordionContent>
                         </AccordionItem>

@@ -56,25 +56,25 @@ export default function MagicURLPage() {
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-[#E7EBC5] to-[#E8C7DE] flex items-center justify-center p-4">
+        <div className="min-h-screen bg-background flex items-center justify-center p-4">
             <div className="w-full max-w-md">
                 <div className="mb-8">
                     <Link
                         href="/login"
-                        className="inline-flex items-center gap-2 text-[#565264] hover:text-[#56876D] transition-colors"
+                        className="inline-flex items-center gap-2 text-foreground hover:text-primary transition-colors"
                     >
                         <ArrowLeft className="h-4 w-4" />
                         Back to login
                     </Link>
                 </div>
 
-                <Card className="bg-white/90 backdrop-blur-sm border-[#565264]/10">
+                <Card className="bg-card border-border">
                     <CardHeader className="text-center space-y-4">
                         <CardTitle className="text-3xl font-bold">
-                            <span className="text-[#565264]">Dev</span>
-                            <span className="text-[#56876D]">Bran.ch</span>
+                            <span className="text-foreground">Dev</span>
+                            <span className="text-primary">Bran.ch</span>
                         </CardTitle>
-                        <CardDescription className="text-[#565264]/80">
+                        <CardDescription className="text-muted-foreground">
                             {emailSent ? "Check your email" : "Sign in with Magic Link"}
                         </CardDescription>
                     </CardHeader>
@@ -83,19 +83,19 @@ export default function MagicURLPage() {
                         {emailSent ? (
                             <div className="text-center space-y-4">
                                 <div className="flex justify-center">
-                                    <CheckCircle className="h-16 w-16 text-[#56876D]" />
+                                    <CheckCircle className="h-16 w-16 text-primary" />
                                 </div>
                                 <div className="space-y-2">
-                                    <h3 className="text-lg font-semibold text-[#565264]">
+                                    <h3 className="text-lg font-semibold text-foreground">
                                         Magic link sent!
                                     </h3>
-                                    <p className="text-sm text-[#565264]/70">
+                                    <p className="text-sm text-muted-foreground">
                                         We've sent a magic link to <strong>{email}</strong>.
                                         Click the link in your email to sign in instantly.
                                     </p>
                                 </div>
-                                <div className="bg-[#E7EBC5]/50 p-4 rounded-lg">
-                                    <p className="text-sm text-[#565264]/80">
+                                <div className="bg-secondary p-4 rounded-lg">
+                                    <p className="text-sm text-muted-foreground">
                                         💡 <strong>Tip:</strong> The magic link will expire in 1 hour for security reasons.
                                     </p>
                                 </div>
@@ -106,14 +106,14 @@ export default function MagicURLPage() {
                                             setEmail("");
                                         }}
                                         variant="outline"
-                                        className="w-full border-[#565264] text-[#565264] hover:bg-[#565264] hover:text-white"
+                                        className="w-full"
                                     >
                                         Send Another Link
                                     </Button>
                                     <Link href="/login" className="block">
                                         <Button
                                             variant="ghost"
-                                            className="w-full text-[#565264] hover:text-[#56876D]"
+                                            className="w-full text-foreground hover:text-primary"
                                         >
                                             Use Password Instead
                                         </Button>
@@ -123,15 +123,15 @@ export default function MagicURLPage() {
                         ) : (
                             <div className="space-y-6">
                                 <div className="text-center space-y-2">
-                                    <Mail className="h-12 w-12 text-[#56876D] mx-auto" />
-                                    <p className="text-sm text-[#565264]/70">
+                                    <Mail className="h-12 w-12 text-primary mx-auto" />
+                                    <p className="text-sm text-muted-foreground">
                                         Enter your email address and we'll send you a magic link to sign in instantly—no password required!
                                     </p>
                                 </div>
 
                                 <div className="space-y-4">
                                     <div className="space-y-2">
-                                        <Label htmlFor="email" className="text-[#565264]">
+                                        <Label htmlFor="email" className="text-foreground">
                                             Email address
                                         </Label>
                                         <Input
@@ -141,7 +141,7 @@ export default function MagicURLPage() {
                                             value={email}
                                             onChange={(e) => setEmail(e.target.value)}
                                             onKeyPress={handleKeyPress}
-                                            className="border-[#565264]/20 focus:border-[#56876D] focus:ring-[#56876D]"
+                                            className="border-border focus:border-primary focus:ring-primary"
                                             disabled={isLoading}
                                         />
                                     </div>
@@ -149,7 +149,7 @@ export default function MagicURLPage() {
 
                                 <Button
                                     onClick={handleSendMagicURL}
-                                    className="w-full bg-[#56876D] hover:bg-[#56876D]/90 text-white"
+                                    className="w-full bg-primary hover:bg-secondary text-primary-foreground"
                                     disabled={!email || isLoading}
                                 >
                                     {isLoading ? (
@@ -167,10 +167,10 @@ export default function MagicURLPage() {
 
                                 <div className="relative">
                                     <div className="absolute inset-0 flex items-center">
-                                        <span className="w-full border-t border-[#565264]/20" />
+                                        <span className="w-full border-t border-border" />
                                     </div>
                                     <div className="relative flex justify-center text-xs uppercase">
-                                        <span className="bg-white px-2 text-[#565264]/60">
+                                        <span className="bg-card px-2 text-muted-foreground">
                                             or
                                         </span>
                                     </div>
@@ -180,7 +180,7 @@ export default function MagicURLPage() {
                                     <Link href="/login" className="block">
                                         <Button
                                             variant="outline"
-                                            className="w-full border-[#565264] text-[#565264] hover:bg-[#565264] hover:text-white"
+                                            className="w-full"
                                         >
                                             Use Password
                                         </Button>
@@ -188,7 +188,7 @@ export default function MagicURLPage() {
                                     <Link href="/signup" className="block">
                                         <Button
                                             variant="outline"
-                                            className="w-full border-[#565264] text-[#565264] hover:bg-[#565264] hover:text-white"
+                                            className="w-full"
                                         >
                                             Sign Up
                                         </Button>

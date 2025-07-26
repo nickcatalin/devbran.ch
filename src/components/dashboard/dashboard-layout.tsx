@@ -12,7 +12,7 @@ interface DashboardLayoutProps {
 export function DashboardLayout({ children }: DashboardLayoutProps) {
     return (
         <SidebarProvider defaultOpen={true}>
-            <div className="min-h-screen bg-gradient-to-br from-[#E7EBC5] to-[#E8C7DE] flex w-full">
+            <div className="min-h-screen bg-background flex w-full">
                 <DashboardSidebar />
                 <SidebarInset className="flex-1">
                     <div className="flex flex-col min-h-screen">

@@ -79,25 +79,25 @@ export default function LoginPage() {
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-[#E7EBC5] to-[#E8C7DE] flex items-center justify-center p-4">
+        <div className="min-h-screen bg-background flex items-center justify-center p-4">
             <div className="w-full max-w-md">
                 <div className="mb-8">
                     <Link
                         href="/"
-                        className="inline-flex items-center gap-2 text-[#565264] hover:text-[#56876D] transition-colors"
+                        className="inline-flex items-center gap-2 text-foreground hover:text-primary transition-colors"
                     >
                         <ArrowLeft className="h-4 w-4" />
                         Back to home
                     </Link>
                 </div>
 
-                <Card className="bg-white/90 backdrop-blur-sm border-[#565264]/10">
+                <Card className="bg-card border-border">
                     <CardHeader className="text-center space-y-4">
                         <CardTitle className="text-3xl font-bold">
-                            <span className="text-[#565264]">Dev</span>
-                            <span className="text-[#56876D]">Bran.ch</span>
+                            <span className="text-foreground">Dev</span>
+                            <span className="text-primary">Bran.ch</span>
                         </CardTitle>
-                        <CardDescription className="text-[#565264]/80">
+                        <CardDescription className="text-muted-foreground">
                             Welcome back! Sign in to your account
                         </CardDescription>
                     </CardHeader>
@@ -105,7 +105,7 @@ export default function LoginPage() {
                     <CardContent className="space-y-6">
                         <div className="space-y-4">
                             <div className="space-y-2">
-                                <label htmlFor="email" className="text-sm font-medium text-[#565264]">
+                                <label htmlFor="email" className="text-sm font-medium text-foreground">
                                     Email
                                 </label>
                                 <Input
@@ -114,13 +114,13 @@ export default function LoginPage() {
                                     placeholder="john@example.com"
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
-                                    className="bg-white/80 border-[#565264]/20 focus:border-[#56876D] focus:ring-[#56876D]/20"
+                                    className="bg-card border-border focus:border-primary focus:ring-primary"
                                     disabled={isLoading}
                                 />
                             </div>
 
                             <div className="space-y-2">
-                                <label htmlFor="password" className="text-sm font-medium text-[#565264]">
+                                <label htmlFor="password" className="text-sm font-medium text-foreground">
                                     Password
                                 </label>
                                 <Input
@@ -129,7 +129,7 @@ export default function LoginPage() {
                                     placeholder="••••••••"
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
-                                    className="bg-white/80 border-[#565264]/20 focus:border-[#56876D] focus:ring-[#56876D]/20"
+                                    className="bg-card border-border focus:border-primary focus:ring-primary"
                                     disabled={isLoading}
                                     onKeyPress={(e) => e.key === 'Enter' && handleLogin()}
                                 />
@@ -138,7 +138,7 @@ export default function LoginPage() {
                             <div className="flex items-center justify-between">
                                 <Link
                                     href="/forgot-password"
-                                    className="text-sm text-[#56876D] hover:underline"
+                                    className="text-sm text-primary hover:underline"
                                 >
                                     Forgot password?
                                 </Link>
@@ -147,12 +147,12 @@ export default function LoginPage() {
 
                         <Button
                             onClick={handleLogin}
-                            className="w-full bg-[#56876D] hover:bg-[#56876D]/90 text-white"
+                            className="w-full"
                             disabled={!email || !password || isLoading}
                         >
                             {isLoading ? (
                                 <>
-                                    <div className="mr-2 h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
+                                    <div className="mr-2 h-4 w-4 animate-spin rounded-full border-2 border-primary-foreground border-t-transparent" />
                                     Signing in...
                                 </>
                             ) : (
@@ -165,17 +165,17 @@ export default function LoginPage() {
 
                         <div className="relative">
                             <div className="absolute inset-0 flex items-center">
-                                <Separator className="w-full bg-[#565264]/20" />
+                                <Separator className="w-full" />
                             </div>
                             <div className="relative flex justify-center text-xs uppercase">
-                                <span className="bg-white px-2 text-[#565264]/60">or continue with</span>
+                                <span className="bg-background px-2 text-muted-foreground">or continue with</span>
                             </div>
                         </div>
 
                         <Button
                             onClick={handleGoogleLogin}
                             variant="outline"
-                            className="w-full border-[#565264]/20 text-[#565264] hover:bg-[#565264]/5 mb-3"
+                            className="w-full mb-3"
                             disabled={isLoading}
                         >
                             <svg className="mr-2 h-4 w-4" viewBox="0 0 24 24">
@@ -202,7 +202,7 @@ export default function LoginPage() {
                         <Button
                             onClick={handleGithubLogin}
                             variant="outline"
-                            className="w-full border-[#565264]/20 text-[#565264] hover:bg-[#565264]/5"
+                            className="w-full"
                             disabled={isLoading}
                         >
                             <Github className="mr-2 h-4 w-4" />
@@ -211,17 +211,17 @@ export default function LoginPage() {
 
                         <div className="relative">
                             <div className="absolute inset-0 flex items-center">
-                                <Separator className="w-full bg-[#565264]/20" />
+                                <Separator className="w-full" />
                             </div>
                             <div className="relative flex justify-center text-xs uppercase">
-                                <span className="bg-white px-2 text-[#565264]/60">or</span>
+                                <span className="bg-background px-2 text-muted-foreground">or</span>
                             </div>
                         </div>
 
                         <Link href="/magic-url" className="block">
                             <Button
                                 variant="outline"
-                                className="w-full border-[#56876D] text-[#56876D] hover:bg-[#56876D] hover:text-white"
+                                className="w-full"
                                 disabled={isLoading}
                             >
                                 <Mail className="mr-2 h-4 w-4" />
@@ -229,9 +229,9 @@ export default function LoginPage() {
                             </Button>
                         </Link>
 
-                        <p className="text-center text-sm text-[#565264]/80">
+                        <p className="text-center text-sm text-muted-foreground">
                             Don't have an account?{" "}
-                            <Link href="/signup" className="text-[#56876D] hover:underline font-medium">
+                            <Link href="/signup" className="text-primary hover:underline font-medium">
                                 Sign up
                             </Link>
                         </p>

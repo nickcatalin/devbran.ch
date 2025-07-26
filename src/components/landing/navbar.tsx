@@ -18,6 +18,7 @@ import { IconLogin, IconUserPlus, IconLogout, IconDashboard } from "@tabler/icon
 import { useAuth } from "@/contexts/auth-context";
 import { toast } from "sonner";
 import { analytics } from "@/lib/posthog";
+import { ThemeToggle } from "../theme-toggle";
 
 const navItems = [
     { name: "Home", link: "#" },
@@ -89,9 +90,9 @@ export function LandingNavbar() {
                             className="h-8 w-8 object-contain"
                         />
                     </div>
-                    <span className="text-lg font-bold text-[#2c2937] drop-shadow-sm dark:text-white whitespace-nowrap">
-                        <span className="text-[#565264]">Dev</span>
-                        <span className="text-[#56876D]">Bran.ch</span>
+                    <span className="text-lg font-bold text-foreground whitespace-nowrap">
+                        <span className="text-primary">Dev</span>
+                        <span className="text-secondary">Bran.ch</span>
                     </span>
                 </div>
 
@@ -99,8 +100,10 @@ export function LandingNavbar() {
                 <NavItems
                     items={navItems}
                     onItemClick={handleItemClick}
-                    className="text-[#2c2937] drop-shadow-sm dark:text-white font-medium"
+                    className="text-foreground font-medium"
                 />
+
+
 
                 {/* User Actions */}
                 <div className="flex items-center space-x-2 flex-shrink-0">
@@ -110,7 +113,7 @@ export function LandingNavbar() {
                                 variant="ghost"
                                 size="sm"
                                 onClick={handleDashboardClick}
-                                className="text-[#2c2937] hover:bg-white/50 hover:text-[#56876D] transition-all duration-200 dark:text-white dark:hover:text-[#E8C7DE] font-medium border border-[#2c2937]/30 hover:border-[#56876D]/40 backdrop-blur-sm whitespace-nowrap"
+                                className="text-foreground hover:bg-accent hover:text-secondary transition-all duration-200 font-medium border border-border hover:border-secondary/40 backdrop-blur-sm whitespace-nowrap"
                             >
                                 <IconDashboard className="mr-2 h-4 w-4" />
                                 Dashboard
@@ -118,7 +121,7 @@ export function LandingNavbar() {
                             <div className="flex items-center space-x-2">
                                 <Avatar className="h-8 w-8">
                                     <AvatarImage src="" />
-                                    <AvatarFallback className="bg-[#56876D] text-white text-xs">
+                                    <AvatarFallback className="bg-secondary text-secondary-foreground text-xs">
                                         {user.name ? getInitials(user.name) : "U"}
                                     </AvatarFallback>
                                 </Avatar>
@@ -126,7 +129,7 @@ export function LandingNavbar() {
                                     variant="ghost"
                                     size="sm"
                                     onClick={handleLogoutClick}
-                                    className="text-[#2c2937] hover:bg-white/50 hover:text-red-600 transition-all duration-200 dark:text-white font-medium border border-[#2c2937]/30 hover:border-red-400 backdrop-blur-sm whitespace-nowrap"
+                                    className="text-foreground hover:bg-accent hover:text-destructive transition-all duration-200 font-medium border border-border hover:border-destructive backdrop-blur-sm whitespace-nowrap"
                                 >
                                     <IconLogout className="h-4 w-4" />
                                 </Button>
@@ -138,7 +141,7 @@ export function LandingNavbar() {
                                 variant="ghost"
                                 size="sm"
                                 onClick={handleLoginClick}
-                                className="text-[#2c2937] hover:bg-white/50 hover:text-[#56876D] transition-all duration-200 dark:text-white dark:hover:text-[#E8C7DE] font-medium border border-[#2c2937]/30 hover:border-[#56876D]/40 backdrop-blur-sm whitespace-nowrap"
+                                className="text-foreground hover:bg-accent hover:text-secondary transition-all duration-200 font-medium border border-border hover:border-secondary/40 backdrop-blur-sm whitespace-nowrap"
                             >
                                 <IconLogin className="mr-2 h-4 w-4" />
                                 Login
@@ -146,7 +149,7 @@ export function LandingNavbar() {
                             <Button
                                 size="sm"
                                 onClick={handleSignupClick}
-                                className="text-white bg-[#56876D] hover:bg-[#56876D]/90 hover:text-white transition-all duration-200 font-medium border border-[#56876D] hover:border-[#56876D]/70 backdrop-blur-sm shadow-md whitespace-nowrap"
+                                className="text-primary-foreground bg-primary hover:bg-secondary transition-all duration-200 font-medium border border-primary hover:border-primary/70 backdrop-blur-sm shadow-md whitespace-nowrap"
                             >
                                 Sign Up
                             </Button>
@@ -167,9 +170,9 @@ export function LandingNavbar() {
                                 className="h-8 w-8 object-contain"
                             />
                         </div>
-                        <span className="text-lg font-bold text-[#2c2937] drop-shadow-sm dark:text-white whitespace-nowrap">
-                            <span className="text-[#565264]">Dev</span>
-                            <span className="text-[#56876D]">Bran.ch</span>
+                        <span className="text-lg font-bold text-foreground whitespace-nowrap">
+                            <span className="text-primary">Dev</span>
+                            <span className="text-secondary">Bran.ch</span>
                         </span>
                     </div>
 
@@ -188,26 +191,26 @@ export function LandingNavbar() {
                                 key={idx}
                                 href={item.link}
                                 onClick={handleItemClick}
-                                className="text-[#2c2937] hover:text-[#56876D] hover:bg-[#E8C7DE]/30 px-3 py-2 rounded-md transition-all duration-200 font-medium border border-transparent hover:border-[#56876D]/30 backdrop-blur-sm"
+                                className="text-foreground hover:text-secondary hover:bg-accent px-3 py-2 rounded-md transition-all duration-200 font-medium border border-transparent hover:border-secondary backdrop-blur-sm"
                             >
                                 {item.name}
                             </a>
                         ))}
-                        <div className="flex flex-col space-y-2 pt-4 border-t border-[#2c2937]/30">
+                        <div className="flex flex-col space-y-2 pt-4 border-t border-border">
                             {user ? (
                                 <>
                                     <div className="flex items-center space-x-3 px-3 py-2">
                                         <Avatar className="h-8 w-8">
                                             <AvatarImage src="" />
-                                            <AvatarFallback className="bg-[#56876D] text-white text-xs">
+                                            <AvatarFallback className="bg-secondary text-secondary-foreground text-xs">
                                                 {user.name ? getInitials(user.name) : "U"}
                                             </AvatarFallback>
                                         </Avatar>
                                         <div className="flex flex-col">
-                                            <span className="text-sm font-medium text-[#2c2937]">
+                                            <span className="text-sm font-medium text-foreground">
                                                 {user.name}
                                             </span>
-                                            <span className="text-xs text-[#2c2937]/70">
+                                            <span className="text-xs text-muted-foreground">
                                                 {user.email}
                                             </span>
                                         </div>
@@ -215,7 +218,7 @@ export function LandingNavbar() {
                                     <Button
                                         variant="ghost"
                                         onClick={handleDashboardClick}
-                                        className="text-[#2c2937] hover:bg-[#E8C7DE]/40 hover:text-[#56876D] transition-all duration-200 border border-[#2c2937]/30 hover:border-[#56876D]/40 backdrop-blur-sm w-full justify-start"
+                                        className="text-foreground hover:bg-accent hover:text-secondary transition-all duration-200 border border-border hover:border-secondary/40 backdrop-blur-sm w-full justify-start"
                                     >
                                         <IconDashboard className="mr-2 h-4 w-4" />
                                         Dashboard
@@ -223,7 +226,7 @@ export function LandingNavbar() {
                                     <Button
                                         variant="ghost"
                                         onClick={handleLogoutClick}
-                                        className="text-[#2c2937] hover:bg-red-50 hover:text-red-600 transition-all duration-200 border border-[#2c2937]/30 hover:border-red-400 backdrop-blur-sm w-full justify-start"
+                                        className="text-foreground hover:bg-accent hover:text-destructive transition-all duration-200 border border-border hover:border-destructive backdrop-blur-sm w-full justify-start"
                                     >
                                         <IconLogout className="mr-2 h-4 w-4" />
                                         Logout
@@ -234,13 +237,13 @@ export function LandingNavbar() {
                                     <Button
                                         variant="ghost"
                                         onClick={handleLoginClick}
-                                        className="text-[#2c2937] hover:bg-[#E8C7DE]/40 hover:text-[#56876D] transition-all duration-200 border border-[#2c2937]/30 hover:border-[#56876D]/40 backdrop-blur-sm w-full justify-center"
+                                        className="text-foreground hover:bg-accent hover:text-secondary transition-all duration-200 border border-border hover:border-secondary/40 backdrop-blur-sm w-full justify-center"
                                     >
                                         Login
                                     </Button>
                                     <Button
                                         onClick={handleSignupClick}
-                                        className="text-white bg-[#56876D] hover:bg-[#56876D]/90 hover:text-white transition-all duration-200 font-medium border border-[#56876D] hover:border-[#56876D]/70 backdrop-blur-sm shadow-md"
+                                        className="text-primary-foreground bg-primary hover:bg-secondary transition-all duration-200 font-medium border border-primary hover:border-primary/70 backdrop-blur-sm shadow-md"
                                     >
                                         Sign Up
                                     </Button>
@@ -250,6 +253,8 @@ export function LandingNavbar() {
                     </div>
                 </MobileNavMenu>
             </MobileNav>
+            <ThemeToggle />
+
         </Navbar>
     );
 }

@@ -10,7 +10,7 @@ import {
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#E7EBC5] to-[#E8C7DE] text-[#0C0C0C]">
+    <div className="min-h-screen bg-background text-foreground">
       <LandingNavbar />
       <HeroSection />
       <FeaturesSection />

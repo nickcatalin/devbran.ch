@@ -83,25 +83,25 @@ export default function ResetPasswordPage() {
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-[#E7EBC5] to-[#E8C7DE] flex items-center justify-center p-4">
+        <div className="min-h-screen bg-background flex items-center justify-center p-4">
             <div className="w-full max-w-md">
                 <div className="mb-8">
                     <Link
                         href="/login"
-                        className="inline-flex items-center gap-2 text-[#565264] hover:text-[#56876D] transition-colors"
+                        className="inline-flex items-center gap-2 text-foreground hover:text-secondary transition-colors"
                     >
                         <ArrowLeft className="h-4 w-4" />
                         Back to login
                     </Link>
                 </div>
 
-                <Card className="bg-white/90 backdrop-blur-sm border-[#565264]/10">
+                <Card className="bg-card border-border">
                     <CardHeader className="text-center space-y-4">
                         <CardTitle className="text-3xl font-bold">
-                            <span className="text-[#565264]">Dev</span>
-                            <span className="text-[#56876D]">Bran.ch</span>
+                            <span className="text-foreground">Dev</span>
+                            <span className="text-secondary">Bran.ch</span>
                         </CardTitle>
-                        <CardDescription className="text-[#565264]/80">
+                        <CardDescription className="text-muted-foreground">
                             {passwordReset ? "Password reset complete" : "Set your new password"}
                         </CardDescription>
                     </CardHeader>
@@ -110,19 +110,19 @@ export default function ResetPasswordPage() {
                         {passwordReset ? (
                             <div className="text-center space-y-4">
                                 <div className="flex justify-center">
-                                    <CheckCircle className="h-16 w-16 text-[#56876D]" />
+                                    <CheckCircle className="h-16 w-16 text-secondary" />
                                 </div>
                                 <div className="space-y-2">
-                                    <p className="text-[#565264]">
+                                    <p className="text-foreground">
                                         Your password has been reset successfully!
                                     </p>
                                 </div>
-                                <p className="text-sm text-[#565264]/70">
+                                <p className="text-sm text-muted-foreground">
                                     You can now sign in with your new password.
                                 </p>
                                 <Button
                                     onClick={() => router.push("/login")}
-                                    className="w-full bg-[#56876D] hover:bg-[#56876D]/90 text-white"
+                                    className="w-full bg-primary hover:bg-secondary text-primary-foreground"
                                 >
                                     Go to Sign In
                                 </Button>
@@ -130,12 +130,12 @@ export default function ResetPasswordPage() {
                         ) : (
                             <>
                                 <div className="space-y-2">
-                                    <p className="text-sm text-[#565264]/80 text-center">
+                                    <p className="text-sm text-muted-foreground text-center">
                                         Enter your new password below.
                                     </p>
                                     {user && (
-                                        <div className="p-3 bg-[#56876D]/10 border border-[#56876D]/20 rounded-md">
-                                            <p className="text-xs text-[#565264]/70 text-center">
+                                        <div className="p-3 bg-secondary border border-secondary rounded-md">
+                                            <p className="text-xs text-muted-foreground text-center">
                                                 You're currently signed in. After resetting your password, you'll be logged out and need to sign in again with your new password.
                                             </p>
                                         </div>
@@ -144,7 +144,7 @@ export default function ResetPasswordPage() {
 
                                 <div className="space-y-4">
                                     <div className="space-y-2">
-                                        <label htmlFor="password" className="text-sm font-medium text-[#565264]">
+                                        <label htmlFor="password" className="text-sm font-medium text-foreground">
                                             New Password
                                         </label>
                                         <Input
@@ -153,13 +153,13 @@ export default function ResetPasswordPage() {
                                             placeholder="••••••••"
                                             value={password}
                                             onChange={(e) => setPassword(e.target.value)}
-                                            className="bg-white/80 border-[#565264]/20 focus:border-[#56876D] focus:ring-[#56876D]/20"
+                                            className="bg-background border-border focus:border-secondary focus:ring-secondary"
                                             disabled={isLoading}
                                         />
                                     </div>
 
                                     <div className="space-y-2">
-                                        <label htmlFor="confirmPassword" className="text-sm font-medium text-[#565264]">
+                                        <label htmlFor="confirmPassword" className="text-sm font-medium text-foreground">
                                             Confirm New Password
                                         </label>
                                         <Input
@@ -168,25 +168,25 @@ export default function ResetPasswordPage() {
                                             placeholder="••••••••"
                                             value={confirmPassword}
                                             onChange={(e) => setConfirmPassword(e.target.value)}
-                                            className="bg-white/80 border-[#565264]/20 focus:border-[#56876D] focus:ring-[#56876D]/20"
+                                            className="bg-background border-border focus:border-secondary focus:ring-secondary"
                                             disabled={isLoading}
                                             onKeyPress={(e) => e.key === 'Enter' && handleResetPassword()}
                                         />
                                     </div>
 
-                                    <p className="text-xs text-[#565264]/60">
+                                    <p className="text-xs text-muted-foreground">
                                         Password must be at least 8 characters long.
                                     </p>
                                 </div>
 
                                 <Button
                                     onClick={handleResetPassword}
-                                    className="w-full bg-[#56876D] hover:bg-[#56876D]/90 text-white"
+                                    className="w-full bg-primary hover:bg-secondary text-primary-foreground"
                                     disabled={!password || !confirmPassword || isLoading}
                                 >
                                     {isLoading ? (
                                         <>
-                                            <div className="mr-2 h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
+                                            <div className="mr-2 h-4 w-4 animate-spin rounded-full border-2 border-primary-foreground border-t-transparent" />
                                             Resetting password...
                                         </>
                                     ) : (
@@ -197,9 +197,9 @@ export default function ResetPasswordPage() {
                                     )}
                                 </Button>
 
-                                <p className="text-center text-sm text-[#565264]/80">
+                                <p className="text-center text-sm text-muted-foreground">
                                     Remember your password?{" "}
-                                    <Link href="/login" className="text-[#56876D] hover:underline font-medium">
+                                    <Link href="/login" className="text-primary hover:underline font-medium">
                                         Sign in
                                     </Link>
                                 </p>

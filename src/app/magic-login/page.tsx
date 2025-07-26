@@ -57,25 +57,25 @@ export default function MagicLoginPage() {
     }, [user, searchParams, loginWithMagicURL, router, isLoading]);
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-[#E7EBC5] to-[#E8C7DE] flex items-center justify-center p-4">
+        <div className="min-h-screen bg-background flex items-center justify-center p-4">
             <div className="w-full max-w-md">
                 <div className="mb-8">
                     <Link
                         href="/login"
-                        className="inline-flex items-center gap-2 text-[#565264] hover:text-[#56876D] transition-colors"
+                        className="inline-flex items-center gap-2 text-foreground hover:text-secondary transition-colors"
                     >
                         <ArrowLeft className="h-4 w-4" />
                         Back to login
                     </Link>
                 </div>
 
-                <Card className="bg-white/90 backdrop-blur-sm border-[#565264]/10">
+                <Card className="bg-card border-border">
                     <CardHeader className="text-center space-y-4">
                         <CardTitle className="text-3xl font-bold">
-                            <span className="text-[#565264]">Dev</span>
-                            <span className="text-[#56876D]">Bran.ch</span>
+                            <span className="text-foreground">Dev</span>
+                            <span className="text-secondary">Bran.ch</span>
                         </CardTitle>
-                        <CardDescription className="text-[#565264]/80">
+                        <CardDescription className="text-muted-foreground">
                             {isLoading ? "Logging you in..." :
                                 loginSuccess ? "Login successful!" :
                                     "Magic link authentication"}
@@ -86,13 +86,13 @@ export default function MagicLoginPage() {
                         {isLoading ? (
                             <div className="text-center space-y-4">
                                 <div className="flex justify-center">
-                                    <Loader2 className="h-16 w-16 text-[#56876D] animate-spin" />
+                                    <Loader2 className="h-16 w-16 text-secondary animate-spin" />
                                 </div>
                                 <div className="space-y-2">
-                                    <h3 className="text-lg font-semibold text-[#565264]">
+                                    <h3 className="text-lg font-semibold text-foreground">
                                         Processing magic link...
                                     </h3>
-                                    <p className="text-sm text-[#565264]/70">
+                                    <p className="text-sm text-muted-foreground">
                                         Please wait while we log you in.
                                     </p>
                                 </div>
@@ -100,13 +100,13 @@ export default function MagicLoginPage() {
                         ) : loginSuccess ? (
                             <div className="text-center space-y-4">
                                 <div className="flex justify-center">
-                                    <CheckCircle className="h-16 w-16 text-[#56876D]" />
+                                    <CheckCircle className="h-16 w-16 text-secondary" />
                                 </div>
                                 <div className="space-y-2">
-                                    <h3 className="text-lg font-semibold text-[#565264]">
+                                    <h3 className="text-lg font-semibold text-foreground">
                                         Welcome back!
                                     </h3>
-                                    <p className="text-sm text-[#565264]/70">
+                                    <p className="text-sm text-muted-foreground">
                                         You have been successfully logged in. Redirecting to your dashboard...
                                     </p>
                                 </div>
@@ -117,7 +117,7 @@ export default function MagicLoginPage() {
                                     <AlertCircle className="h-16 w-16 text-red-500" />
                                 </div>
                                 <div className="space-y-2">
-                                    <h3 className="text-lg font-semibold text-[#565264]">
+                                    <h3 className="text-lg font-semibold text-foreground">
                                         Login Failed
                                     </h3>
                                     <p className="text-sm text-red-600">
@@ -127,14 +127,14 @@ export default function MagicLoginPage() {
                                 <div className="space-y-3">
                                     <Button
                                         onClick={() => router.push("/login")}
-                                        className="w-full bg-[#56876D] hover:bg-[#56876D]/90 text-white"
+                                        className="w-full bg-secondary hover:bg-accent text-secondary-foreground"
                                     >
                                         Try Again
                                     </Button>
                                     <Button
                                         onClick={() => router.push("/magic-url")}
                                         variant="outline"
-                                        className="w-full border-[#565264] text-[#565264] hover:bg-[#565264] hover:text-white"
+                                        className="w-full border-border text-foreground hover:bg-foreground hover:text-background"
                                     >
                                         Request New Magic Link
                                     </Button>

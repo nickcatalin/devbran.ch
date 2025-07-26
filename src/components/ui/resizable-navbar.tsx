@@ -88,8 +88,8 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
       animate={{
         backdropFilter: visible ? "blur(15px) saturate(180%)" : "blur(10px) saturate(150%)",
         boxShadow: visible
-          ? "0 0 24px rgba(34, 42, 53, 0.06), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 42, 53, 0.04), 0 0 4px rgba(34, 42, 53, 0.08), 0 16px 68px rgba(47, 48, 55, 0.05), 0 1px 0 rgba(255, 255, 255, 0.1) inset"
-          : "0 4px 20px rgba(86, 82, 100, 0.1), 0 1px 3px rgba(86, 82, 100, 0.1)",
+          ? "var(--shadow-lg)"
+          : "var(--shadow-md)",
         width: visible ? "80%" : "100%",
         y: visible ? 20 : 0,
       }}
@@ -103,13 +103,10 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
       }}
       className={cn(
         "relative z-[60] mx-auto hidden w-full max-w-7xl flex-row items-center justify-between self-start rounded-full px-6 py-2 lg:flex",
-        // Adaptive background that responds to the gradient behind
-        "bg-gradient-to-r from-white/70 via-white/60 to-white/70",
-        "before:absolute before:inset-0 before:rounded-full before:bg-gradient-to-r before:from-[#E7EBC5]/30 before:via-transparent before:to-[#E8C7DE]/30 before:opacity-50",
+        // Solid background
+        "bg-card",
         "backdrop-blur-md backdrop-saturate-150",
-        visible && "bg-white/80 before:opacity-70 shadow-xl",
-        "dark:bg-gradient-to-r dark:from-neutral-950/80 dark:via-neutral-950/70 dark:to-neutral-950/80",
-        "dark:before:from-neutral-800/30 dark:before:to-neutral-700/30",
+        visible && "shadow-xl",
         className,
       )}
     >
@@ -135,14 +132,14 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
         <a
           onMouseEnter={() => setHovered(idx)}
           onClick={onItemClick}
-          className="relative px-4 py-2 text-[#2c2937] hover:text-[#56876D] dark:text-neutral-200 dark:hover:text-neutral-100 transition-colors duration-200"
+          className="relative px-4 py-2 text-foreground hover:text-primary transition-colors duration-200"
           key={`link-${idx}`}
           href={item.link}
         >
           {hovered === idx && (
             <motion.div
               layoutId="hovered"
-              className="absolute inset-0 h-full w-full rounded-full bg-white/60 dark:bg-neutral-700/60 shadow-sm"
+              className="absolute inset-0 h-full w-full rounded-full bg-accent shadow-sm"
             />
           )}
           <span className="relative z-20 font-medium">{item.name}</span>
@@ -158,12 +155,12 @@ export const MobileNav = ({ children, className, visible }: MobileNavProps) => {
       animate={{
         backdropFilter: visible ? "blur(15px) saturate(180%)" : "blur(10px) saturate(150%)",
         boxShadow: visible
-          ? "0 0 24px rgba(34, 42, 53, 0.06), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 42, 53, 0.04), 0 0 4px rgba(34, 42, 53, 0.08), 0 16px 68px rgba(47, 48, 55, 0.05), 0 1px 0 rgba(255, 255, 255, 0.1) inset"
-          : "0 4px 20px rgba(86, 82, 100, 0.1), 0 1px 3px rgba(86, 82, 100, 0.1)",
+          ? "var(--shadow-lg)"
+          : "var(--shadow-md)",
         width: visible ? "95%" : "100%",
         paddingRight: visible ? "16px" : "0px",
         paddingLeft: visible ? "16px" : "0px",
-        borderRadius: "2rem", // Keep consistent rounded shape
+        borderRadius: "var(--radius-lg)", // Keep consistent rounded shape
         y: visible ? 20 : 0,
       }}
       transition={{
@@ -176,13 +173,10 @@ export const MobileNav = ({ children, className, visible }: MobileNavProps) => {
       }}
       className={cn(
         "relative z-50 mx-auto flex w-full max-w-[calc(100vw-1rem)] flex-col items-center justify-between px-0 py-2 lg:hidden rounded-full",
-        // Adaptive background for mobile
-        "bg-gradient-to-r from-white/70 via-white/60 to-white/70",
-        "before:absolute before:inset-0 before:rounded-full before:bg-gradient-to-r before:from-[#E7EBC5]/30 before:via-transparent before:to-[#E8C7DE]/30 before:opacity-50",
+        // Solid background for mobile
+        "bg-card",
         "backdrop-blur-md backdrop-saturate-150",
-        visible && "bg-white/80 before:opacity-70 shadow-xl",
-        "dark:bg-gradient-to-r dark:from-neutral-950/80 dark:via-neutral-950/70 dark:to-neutral-950/80",
-        "dark:before:from-neutral-800/30 dark:before:to-neutral-700/30",
+        visible && "shadow-xl",
         className,
       )}
     >
@@ -224,15 +218,10 @@ export const MobileNavMenu = ({
           exit={{ opacity: 0, y: -10 }}
           className={cn(
             "absolute inset-x-0 top-16 z-50 flex w-full flex-col items-start justify-start gap-4 rounded-lg px-4 py-8",
-            // Enhanced adaptive background for mobile menu
-            "bg-gradient-to-br from-white/90 via-white/85 to-white/90",
-            "before:absolute before:inset-0 before:rounded-lg before:bg-gradient-to-br before:from-[#E7EBC5]/40 before:via-[#E8C7DE]/20 before:to-[#E7EBC5]/40",
+            // Enhanced solid background for mobile menu
+            "bg-card",
             "backdrop-blur-xl backdrop-saturate-180",
-            "shadow-[0_8px_32px_rgba(86,82,100,0.15),_0_4px_16px_rgba(86,82,100,0.1),_0_0_0_1px_rgba(255,255,255,0.2)]",
-            "border border-white/40",
-            "dark:bg-gradient-to-br dark:from-neutral-950/90 dark:via-neutral-950/85 dark:to-neutral-950/90",
-            "dark:before:from-neutral-800/40 dark:before:to-neutral-700/40",
-            "dark:border-neutral-700/40",
+            "shadow-lg border",
             className,
           )}
         >
@@ -255,12 +244,12 @@ export const MobileNavToggle = ({
   return (
     <button
       onClick={onClick}
-      className="p-2 hover:bg-white/20 rounded-md transition-colors duration-200 flex-shrink-0"
+      className="p-2 hover:bg-accent rounded-md transition-colors duration-200 flex-shrink-0"
     >
       {isOpen ? (
-        <IconX className="h-6 w-6 text-[#2c2937] dark:text-white" />
+        <IconX className="h-6 w-6 text-foreground" />
       ) : (
-        <IconMenu2 className="h-6 w-6 text-[#2c2937] dark:text-white" />
+        <IconMenu2 className="h-6 w-6 text-foreground" />
       )}
     </button>
   );
@@ -305,11 +294,11 @@ export const NavbarButton = ({
 
   const variantStyles = {
     primary:
-      "shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]",
-    secondary: "bg-transparent shadow-none dark:text-white",
-    dark: "bg-black text-white shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]",
+      "shadow-lg border border-border",
+    secondary: "bg-transparent shadow-none text-foreground",
+    dark: "bg-background text-foreground shadow-lg border border-border",
     gradient:
-      "bg-gradient-to-b from-blue-500 to-blue-700 text-white shadow-[0px_2px_0px_0px_rgba(255,255,255,0.3)_inset]",
+      "bg-primary text-primary-foreground shadow-sm",
   };
 
   return (

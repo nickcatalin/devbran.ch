@@ -25,13 +25,13 @@ export function TestimonialsSection() {
     ];
 
     return (
-        <section id="testimonials" className="py-20 bg-[#E7EBC5]">
+        <section id="testimonials" className="py-20 bg-background">
             <div className="container mx-auto px-4">
                 <div className="text-center mb-16">
-                    <h2 className="text-4xl lg:text-5xl font-bold text-[#565264] mb-4">
+                    <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-4">
                         Loved by Developers
                     </h2>
-                    <p className="text-xl text-[#565264]/80 max-w-2xl mx-auto">
+                    <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
                         See what developers are saying about DevBran.ch
                     </p>
                 </div>

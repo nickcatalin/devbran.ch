@@ -53,38 +53,14 @@ const navigationItems = [
         badge: null
     },
     {
-        title: "Projects",
-        icon: Folder,
-        href: "/projects",
-        badge: "12"
-    },
-    {
         title: "Analytics",
         icon: BarChart3,
         href: "/analytics",
         badge: null
     },
-    {
-        title: "Connections",
-        icon: Users,
-        href: "/connections",
-        badge: "3"
-    },
-    {
-        title: "Messages",
-        icon: MessageSquare,
-        href: "/messages",
-        badge: "2"
-    }
 ];
 
 const secondaryItems = [
-    {
-        title: "Notifications",
-        icon: Bell,
-        href: "/notifications",
-        badge: "5"
-    },
     {
         title: "Settings",
         icon: Settings,
@@ -112,9 +88,9 @@ export function DashboardSidebar() {
         <Sidebar
             variant="sidebar"
             collapsible="icon"
-            className="border-r border-[#565264]/20 bg-white/90 backdrop-blur-sm"
+            className="border-r border-border bg-card"
         >
-            <SidebarHeader className="border-b border-[#565264]/10 pb-4">
+            <SidebarHeader className="border-b border-border pb-4">
                 <div className={`flex items-center ${isCollapsed ? 'justify-center px-2' : 'space-x-3 px-2'}`}>
                     <div className={`flex items-center justify-center flex-shrink-0 ${isCollapsed ? 'w-8 h-8' : 'w-12 h-12'}`}>
                         <img
@@ -125,8 +101,8 @@ export function DashboardSidebar() {
                     </div>
                     {!isCollapsed && (
                         <div className="flex flex-col">
-                            <span className="font-semibold text-[#565264] text-sm">DevBran.ch</span>
-                            <span className="text-xs text-[#565264]/60">Developer Platform</span>
+                            <span className="font-semibold text-foreground text-sm">DevBran.ch</span>
+                            <span className="text-xs text-muted-foreground">Developer Platform</span>
                         </div>
                     )}
                 </div>
@@ -135,7 +111,7 @@ export function DashboardSidebar() {
             <SidebarContent className="px-2">
                 {/* Main Navigation */}
                 <SidebarGroup>
-                    <SidebarGroupLabel className="text-[#565264]/70 text-xs font-medium uppercase tracking-wider">
+                    <SidebarGroupLabel className="text-muted-foreground text-xs font-medium uppercase tracking-wider">
                         {!isCollapsed ? "Navigation" : ""}
                     </SidebarGroupLabel>
                     <SidebarGroupContent>
@@ -147,18 +123,18 @@ export function DashboardSidebar() {
                                         <SidebarMenuButton
                                             asChild
                                             isActive={isActive}
-                                            className={`group w-full ${isCollapsed ? 'flex justify-center items-center' : ''} ${isActive
-                                                ? 'bg-gradient-to-r from-[#56876D]/20 to-[#E8C7DE]/20 text-[#565264] border-r-2 border-[#56876D]'
-                                                : 'text-[#565264]/70 hover:bg-gradient-to-r hover:from-[#E7EBC5]/30 hover:to-[#E8C7DE]/20 hover:text-[#565264]'
+                                            className={`group w-full transition-all duration-200 ${isCollapsed ? 'flex justify-center items-center' : ''} ${isActive
+                                                ? 'bg-primary text-primary-foreground border-r-2 border-primary'
+                                                : 'text-muted-foreground hover:bg-secondary/80 hover:text-foreground/90 hover:shadow-sm'
                                                 }`}
                                         >
                                             <Link href={item.href} className={`flex items-center w-full ${isCollapsed ? 'justify-center' : 'space-x-3'}`}>
-                                                <item.icon className={`h-4 w-4 ${isActive ? 'text-[#56876D]' : 'text-[#565264]/60'} ${isCollapsed ? 'mx-auto' : ''}`} />
+                                                <item.icon className={`h-4 w-4 transition-colors ${isActive ? 'text-primary' : 'text-muted-foreground/70 group-hover:text-foreground/90'} ${isCollapsed ? 'mx-auto' : ''}`} />
                                                 {!isCollapsed && (
                                                     <>
-                                                        <span className="font-medium text-sm">{item.title}</span>
+                                                        <span className="font-medium text-sm transition-colors group-hover:text-foreground/95">{item.title}</span>
                                                         {item.badge && (
-                                                            <Badge variant="secondary" className="ml-auto h-5 bg-[#E8C7DE]/40 text-[#565264] text-xs">
+                                                            <Badge variant="secondary" className="ml-auto h-5 bg-accent text-accent-foreground text-xs">
                                                                 {item.badge}
                                                             </Badge>
                                                         )}
@@ -175,7 +151,7 @@ export function DashboardSidebar() {
 
                 {/* Secondary Navigation */}
                 <SidebarGroup>
-                    <SidebarGroupLabel className="text-[#565264]/70 text-xs font-medium uppercase tracking-wider">
+                    <SidebarGroupLabel className="text-muted-foreground text-xs font-medium uppercase tracking-wider">
                         {!isCollapsed ? "Account" : ""}
                     </SidebarGroupLabel>
                     <SidebarGroupContent>
@@ -187,18 +163,18 @@ export function DashboardSidebar() {
                                         <SidebarMenuButton
                                             asChild
                                             isActive={isActive}
-                                            className={`group w-full ${isCollapsed ? 'flex justify-center items-center' : ''} ${isActive
-                                                ? 'bg-gradient-to-r from-[#56876D]/20 to-[#E8C7DE]/20 text-[#565264] border-r-2 border-[#56876D]'
-                                                : 'text-[#565264]/70 hover:bg-gradient-to-r hover:from-[#E7EBC5]/30 hover:to-[#E8C7DE]/20 hover:text-[#565264]'
+                                            className={`group w-full transition-all duration-200 ${isCollapsed ? 'flex justify-center items-center' : ''} ${isActive
+                                                ? 'bg-primary text-primary-foreground border-r-2 border-primary'
+                                                : 'text-muted-foreground hover:bg-secondary/80 hover:text-foreground/90 hover:shadow-sm'
                                                 }`}
                                         >
                                             <Link href={item.href} className={`flex items-center w-full ${isCollapsed ? 'justify-center' : 'space-x-3'}`}>
-                                                <item.icon className={`h-4 w-4 ${isActive ? 'text-[#56876D]' : 'text-[#565264]/60'} ${isCollapsed ? 'mx-auto' : ''}`} />
+                                                <item.icon className={`h-4 w-4 transition-colors ${isActive ? 'text-primary' : 'text-muted-foreground/70 group-hover:text-foreground/90'} ${isCollapsed ? 'mx-auto' : ''}`} />
                                                 {!isCollapsed && (
                                                     <>
-                                                        <span className="font-medium text-sm">{item.title}</span>
+                                                        <span className="font-medium text-sm transition-colors group-hover:text-foreground/95">{item.title}</span>
                                                         {item.badge && (
-                                                            <Badge variant="secondary" className="ml-auto h-5 bg-[#E8C7DE]/40 text-[#565264] text-xs">
+                                                            <Badge variant="secondary" className="ml-auto h-5 bg-accent text-accent-foreground text-xs">
                                                                 {item.badge}
                                                             </Badge>
                                                         )}
@@ -213,60 +189,32 @@ export function DashboardSidebar() {
                     </SidebarGroupContent>
                 </SidebarGroup>
 
-                {/* Quick Actions - Only show when expanded */}
-                {!isCollapsed && (
-                    <SidebarGroup>
-                        <SidebarGroupLabel className="text-[#565264]/70 text-xs font-medium uppercase tracking-wider">
-                            Quick Actions
-                        </SidebarGroupLabel>
-                        <SidebarGroupContent>
-                            <div className="space-y-2 px-2">
-                                <Button
-                                    variant="outline"
-                                    size="sm"
-                                    className="w-full justify-start text-xs bg-gradient-to-r from-[#56876D]/10 to-[#56876D]/5 border-[#56876D]/20 hover:bg-[#56876D]/20"
-                                >
-                                    <FileText className="mr-2 h-3 w-3" />
-                                    New Project
-                                </Button>
-                                <Button
-                                    variant="outline"
-                                    size="sm"
-                                    className="w-full justify-start text-xs bg-gradient-to-r from-[#E8C7DE]/20 to-[#E8C7DE]/10 border-[#E8C7DE]/30 hover:bg-[#E8C7DE]/30"
-                                >
-                                    <Users className="mr-2 h-3 w-3" />
-                                    Find Devs
-                                </Button>
-                            </div>
-                        </SidebarGroupContent>
-                    </SidebarGroup>
-                )}
             </SidebarContent>
 
-            <SidebarFooter className="border-t border-[#565264]/10 pt-4">
+            <SidebarFooter className="border-t border-border pt-4">
                 {/* User Profile Section */}
                 <div className={`px-2 ${isCollapsed ? 'flex justify-center' : ''}`}>
                     {isCollapsed ? (
-                        <Avatar className="h-8 w-8 border-2 border-[#56876D]/20">
+                        <Avatar className="h-8 w-8 border-2 border-primary">
                             <AvatarImage src="/placeholder-profile.jpg" alt={user?.name || "User"} />
-                            <AvatarFallback className="bg-[#56876D] text-white text-xs font-semibold">
+                            <AvatarFallback className="bg-primary text-primary-foreground text-xs font-semibold">
                                 {user?.name?.charAt(0)?.toUpperCase() || 'U'}
                             </AvatarFallback>
                         </Avatar>
                     ) : (
                         <div className="space-y-3">
-                            <div className="flex items-center space-x-3 p-2 rounded-lg bg-gradient-to-r from-[#E7EBC5]/20 to-[#E8C7DE]/20 border border-[#565264]/10">
-                                <Avatar className="h-8 w-8 border-2 border-[#56876D]/20">
+                            <div className="flex items-center space-x-3 p-2 rounded-lg bg-secondary border border-border">
+                                <Avatar className="h-8 w-8 border-2 border-primary">
                                     <AvatarImage src="/placeholder-profile.jpg" alt={user?.name || "User"} />
-                                    <AvatarFallback className="bg-[#56876D] text-white text-xs font-semibold">
+                                    <AvatarFallback className="bg-primary text-primary-foreground text-xs font-semibold">
                                         {user?.name?.charAt(0)?.toUpperCase() || 'U'}
                                     </AvatarFallback>
                                 </Avatar>
                                 <div className="flex-1 min-w-0">
-                                    <p className="text-sm font-medium text-[#565264] truncate">
+                                    <p className="text-sm font-medium text-foreground truncate">
                                         {user?.name || 'Developer'}
                                     </p>
-                                    <p className="text-xs text-[#565264]/60 truncate">
+                                    <p className="text-xs text-muted-foreground truncate">
                                         {user?.email || 'user@example.com'}
                                     </p>
                                 </div>
@@ -276,7 +224,7 @@ export function DashboardSidebar() {
                                 <Button
                                     variant="outline"
                                     size="sm"
-                                    className="w-full justify-start text-xs border-[#565264]/20 hover:bg-[#565264]/10"
+                                    className="w-full justify-start text-xs border-border hover:bg-muted"
                                     asChild
                                 >
                                     <Link href="/profile">
@@ -288,7 +236,7 @@ export function DashboardSidebar() {
                                     variant="ghost"
                                     size="sm"
                                     onClick={handleLogout}
-                                    className="w-full justify-start text-xs text-red-600 hover:bg-red-50 hover:text-red-700"
+                                    className="w-full justify-start text-xs text-destructive hover:bg-destructive hover:text-destructive-foreground"
                                 >
                                     <LogOut className="mr-2 h-3 w-3" />
                                     Sign Out

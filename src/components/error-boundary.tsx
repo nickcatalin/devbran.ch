@@ -33,13 +33,13 @@ export class ErrorBoundary extends Component<Props, State> {
     render() {
         if (this.state.hasError) {
             return this.props.fallback || (
-                <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#E7EBC5] to-[#E8C7DE]">
+                <div className="min-h-screen flex items-center justify-center bg-background">
                     <div className="text-center p-8">
-                        <h2 className="text-2xl font-bold text-[#565264] mb-4">Something went wrong</h2>
-                        <p className="text-[#565264]/80 mb-6">We've logged this issue and will fix it soon.</p>
+                        <h2 className="text-2xl font-bold text-foreground mb-4">Something went wrong</h2>
+                        <p className="text-muted-foreground mb-6">We've logged this issue and will fix it soon.</p>
                         <button
                             onClick={() => window.location.reload()}
-                            className="bg-[#56876D] hover:bg-[#56876D]/90 text-white px-6 py-2 rounded-md"
+                            className="bg-primary hover:bg-secondary text-primary-foreground px-6 py-2 rounded-md"
                         >
                             Reload Page
                         </button>

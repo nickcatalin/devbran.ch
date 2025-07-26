@@ -73,25 +73,25 @@ export default function SignupPage() {
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-[#E7EBC5] to-[#E8C7DE] flex items-center justify-center p-4">
+        <div className="min-h-screen bg-background flex items-center justify-center p-4">
             <div className="w-full max-w-md">
                 <div className="mb-8">
                     <Link
                         href="/"
-                        className="inline-flex items-center gap-2 text-[#565264] hover:text-[#56876D] transition-colors"
+                        className="inline-flex items-center gap-2 text-foreground hover:text-secondary transition-colors"
                     >
                         <ArrowLeft className="h-4 w-4" />
                         Back to home
                     </Link>
                 </div>
 
-                <Card className="bg-white/90 backdrop-blur-sm border-[#565264]/10">
+                <Card className="bg-card border-border">
                     <CardHeader className="text-center space-y-4">
                         <CardTitle className="text-3xl font-bold">
-                            <span className="text-[#565264]">Dev</span>
-                            <span className="text-[#56876D]">Bran.ch</span>
+                            <span className="text-foreground">Dev</span>
+                            <span className="text-secondary">Bran.ch</span>
                         </CardTitle>
-                        <CardDescription className="text-[#565264]/80">
+                        <CardDescription className="text-muted-foreground">
                             Create your developer profile in minutes
                         </CardDescription>
                     </CardHeader>
@@ -99,7 +99,7 @@ export default function SignupPage() {
                     <CardContent className="space-y-6">
                         <div className="space-y-4">
                             <div className="space-y-2">
-                                <label htmlFor="username" className="text-sm font-medium text-[#565264]">
+                                <label htmlFor="username" className="text-sm font-medium text-foreground">
                                     Username
                                 </label>
                                 <Input
@@ -108,16 +108,16 @@ export default function SignupPage() {
                                     placeholder="johndoe"
                                     value={username}
                                     onChange={(e) => setUsername(e.target.value)}
-                                    className="bg-white/80 border-[#565264]/20 focus:border-[#56876D] focus:ring-[#56876D]/20"
+                                    className="bg-background border-border focus:border-secondary focus:ring-secondary"
                                     disabled={isLoading}
                                 />
-                                <p className="text-xs text-[#565264]/60">
+                                <p className="text-xs text-muted-foreground">
                                     Your profile will be available at devbran.ch/{username}
                                 </p>
                             </div>
 
                             <div className="space-y-2">
-                                <label htmlFor="email" className="text-sm font-medium text-[#565264]">
+                                <label htmlFor="email" className="text-sm font-medium text-foreground">
                                     Email
                                 </label>
                                 <Input
@@ -126,13 +126,13 @@ export default function SignupPage() {
                                     placeholder="john@example.com"
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
-                                    className="bg-white/80 border-[#565264]/20 focus:border-[#56876D] focus:ring-[#56876D]/20"
+                                    className="bg-background border-border focus:border-secondary focus:ring-secondary"
                                     disabled={isLoading}
                                 />
                             </div>
 
                             <div className="space-y-2">
-                                <label htmlFor="password" className="text-sm font-medium text-[#565264]">
+                                <label htmlFor="password" className="text-sm font-medium text-foreground">
                                     Password
                                 </label>
                                 <Input
@@ -141,7 +141,7 @@ export default function SignupPage() {
                                     placeholder="••••••••"
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
-                                    className="bg-white/80 border-[#565264]/20 focus:border-[#56876D] focus:ring-[#56876D]/20"
+                                    className="bg-background border-border focus:border-secondary focus:ring-secondary"
                                     disabled={isLoading}
                                     onKeyDown={(e) => e.key === 'Enter' && handleSignUp()}
                                 />
@@ -150,7 +150,7 @@ export default function SignupPage() {
 
                         <Button
                             onClick={handleSignUp}
-                            className="w-full bg-[#56876D] hover:bg-[#56876D]/90 text-white"
+                            className="w-full bg-secondary hover:bg-accent text-secondary-foreground"
                             disabled={!username || !email || !password || isLoading}
                         >
                             {isLoading ? (
@@ -168,17 +168,17 @@ export default function SignupPage() {
 
                         <div className="relative">
                             <div className="absolute inset-0 flex items-center">
-                                <Separator className="w-full bg-[#565264]/20" />
+                                <Separator className="w-full bg-border" />
                             </div>
                             <div className="relative flex justify-center text-xs uppercase">
-                                <span className="bg-white px-2 text-[#565264]/60">or continue with</span>
+                                <span className="bg-background px-2 text-muted-foreground">or continue with</span>
                             </div>
                         </div>
 
                         <Button
                             onClick={handleGoogleSignup}
                             variant="outline"
-                            className="w-full border-[#565264]/20 text-[#565264] hover:bg-[#565264]/5 mb-3"
+                            className="w-full border-border text-foreground hover:bg-muted mb-3"
                             disabled={isLoading}
                         >
                             <svg className="mr-2 h-4 w-4" viewBox="0 0 24 24">
@@ -205,27 +205,27 @@ export default function SignupPage() {
                         <Button
                             onClick={handleGithubSignup}
                             variant="outline"
-                            className="w-full border-[#565264]/20 text-[#565264] hover:bg-[#565264]/5"
+                            className="w-full border-border text-foreground hover:bg-muted"
                             disabled={isLoading}
                         >
                             <Github className="mr-2 h-4 w-4" />
                             Continue with GitHub
                         </Button>
 
-                        <p className="text-center text-sm text-[#565264]/80">
+                        <p className="text-center text-sm text-muted-foreground">
                             Already have an account?{" "}
-                            <Link href="/login" className="text-[#56876D] hover:underline font-medium">
+                            <Link href="/login" className="text-secondary hover:underline font-medium">
                                 Sign in
                             </Link>
                         </p>
 
-                        <p className="text-center text-xs text-[#565264]/60">
+                        <p className="text-center text-xs text-muted-foreground">
                             By creating an account, you agree to our{" "}
-                            <Link href="/terms" className="underline hover:text-[#56876D]">
+                            <Link href="/terms" className="underline hover:text-secondary">
                                 Terms of Service
                             </Link>{" "}
                             and{" "}
-                            <Link href="/privacy" className="underline hover:text-[#56876D]">
+                            <Link href="/privacy" className="underline hover:text-secondary">
                                 Privacy Policy
                             </Link>
                         </p>

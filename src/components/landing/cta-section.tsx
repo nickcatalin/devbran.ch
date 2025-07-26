@@ -18,39 +18,39 @@ export function CtaSection() {
     };
 
     return (
-        <section id="pricing" className="py-20 bg-[#56876D]">
+        <section id="pricing" className="py-20 bg-primary">
             <div className="container mx-auto px-4 text-center">
                 <div className="max-w-3xl mx-auto space-y-8">
-                    <h2 className="text-4xl lg:text-5xl font-bold text-white">
+                    <h2 className="text-4xl lg:text-5xl font-bold text-primary-foreground">
                         Ready to Build Your Developer Profile?
                     </h2>
-                    <p className="text-xl text-white/90">
+                    <p className="text-xl text-primary-foreground">
                         Join thousands of developers who trust DevBran.ch to showcase their work
                     </p>
 
                     <div className="flex gap-2 max-w-md mx-auto">
                         <div className="relative flex-1">
-                            <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#565264]/70 font-medium z-10">
+                            <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground font-medium z-10">
                                 devbran.ch/
                             </span>
                             <Input
                                 placeholder="username"
                                 value={username}
                                 onChange={(e) => setUsername(e.target.value)}
-                                className="pl-[100px] bg-white/90 border-white/20 focus:border-white focus:ring-white/20"
+                                className="pl-[100px]"
                                 onKeyPress={(e) => e.key === 'Enter' && handleCreatePage()}
                             />
                         </div>
                         <Button
                             onClick={handleCreatePage}
-                            className="bg-[#565264] hover:bg-[#565264]/90 text-white"
+                            variant="secondary"
                         >
                             Get Started
                             <ArrowRight className="ml-2 h-4 w-4" />
                         </Button>
                     </div>
 
-                    <div className="flex items-center justify-center gap-8 text-white/80">
+                    <div className="flex items-center justify-center gap-8 text-primary-foreground">
                         <div className="flex items-center gap-2">
                             <Shield className="h-5 w-5" />
                             <span>Free forever</span>
