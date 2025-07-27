@@ -79,8 +79,14 @@ export default function LoginPage() {
     };
 
     return (
-        <div className="min-h-screen bg-background flex items-center justify-center p-4">
-            <div className="w-full max-w-md">
+        <div className="min-h-screen bg-gradient-to-br from-primary/10 via-secondary/15 to-accent/20 flex items-center justify-center p-4 relative overflow-hidden">
+            {/* Background decorations */}
+            <div className="absolute inset-0">
+                <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-pulse"></div>
+                <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-secondary/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent/10 rounded-full blur-3xl"></div>
+            </div>
+            <div className="w-full max-w-md relative z-10">
                 <div className="mb-8">
                     <Link
                         href="/"
@@ -91,7 +97,7 @@ export default function LoginPage() {
                     </Link>
                 </div>
 
-                <Card className="bg-card border-border">
+                <Card className="bg-card/80 backdrop-blur border-border/50 shadow-2xl">
                     <CardHeader className="text-center space-y-4">
                         <CardTitle className="text-3xl font-bold">
                             <span className="text-foreground">Dev</span>
@@ -114,7 +120,7 @@ export default function LoginPage() {
                                     placeholder="john@example.com"
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
-                                    className="bg-card border-border focus:border-primary focus:ring-primary"
+                                    className="bg-card border-border focus:border-primary focus:ring-primary/20 text-foreground placeholder:text-muted-foreground"
                                     disabled={isLoading}
                                 />
                             </div>
@@ -129,7 +135,7 @@ export default function LoginPage() {
                                     placeholder="••••••••"
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
-                                    className="bg-card border-border focus:border-primary focus:ring-primary"
+                                    className="bg-card border-border focus:border-primary focus:ring-primary/20 text-foreground placeholder:text-muted-foreground"
                                     disabled={isLoading}
                                     onKeyPress={(e) => e.key === 'Enter' && handleLogin()}
                                 />
@@ -147,7 +153,7 @@ export default function LoginPage() {
 
                         <Button
                             onClick={handleLogin}
-                            className="w-full"
+                            className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
                             disabled={!email || !password || isLoading}
                         >
                             {isLoading ? (
@@ -175,7 +181,7 @@ export default function LoginPage() {
                         <Button
                             onClick={handleGoogleLogin}
                             variant="outline"
-                            className="w-full mb-3"
+                            className="w-full border-border text-foreground hover:bg-muted mb-3"
                             disabled={isLoading}
                         >
                             <svg className="mr-2 h-4 w-4" viewBox="0 0 24 24">
@@ -202,7 +208,7 @@ export default function LoginPage() {
                         <Button
                             onClick={handleGithubLogin}
                             variant="outline"
-                            className="w-full"
+                            className="w-full border-border text-foreground hover:bg-muted"
                             disabled={isLoading}
                         >
                             <Github className="mr-2 h-4 w-4" />
@@ -221,7 +227,7 @@ export default function LoginPage() {
                         <Link href="/magic-url" className="block">
                             <Button
                                 variant="outline"
-                                className="w-full"
+                                className="w-full border-border text-foreground hover:bg-muted"
                                 disabled={isLoading}
                             >
                                 <Mail className="mr-2 h-4 w-4" />

@@ -5,7 +5,7 @@ import { ArrowRight, Globe, Code, User } from "lucide-react";
 
 export function SafariShowcaseSection() {
     return (
-        <section className="relative py-20 md:py-32 bg-background overflow-hidden">
+        <section className="relative py-20 md:py-32 bg-gradient-to-br from-accent/5 via-background to-primary/10 overflow-hidden">
             <div className="container mx-auto px-4">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
                     {/* Content */}
@@ -75,9 +75,9 @@ export function SafariShowcaseSection() {
             </div>
 
             {/* Background decorations */}
-            <div className="absolute top-10 left-10 w-20 h-20 bg-primary rounded-full blur-xl" />
-            <div className="absolute bottom-10 right-10 w-32 h-32 bg-secondary rounded-full blur-xl" />
-            <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-accent rounded-full blur-lg" />
+            <div className="absolute top-10 left-10 w-20 h-20 bg-primary/20 rounded-full blur-xl" />
+            <div className="absolute bottom-10 right-10 w-32 h-32 bg-secondary/20 rounded-full blur-xl" />
+            <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-accent/20 rounded-full blur-lg" />
         </section>
     );
 }

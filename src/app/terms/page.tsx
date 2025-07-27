@@ -5,19 +5,25 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export default function TermsPage() {
     return (
-        <div className="min-h-screen bg-background p-4">
-            <div className="max-w-4xl mx-auto">
+        <div className="min-h-screen bg-gradient-to-br from-accent/20 via-primary/10 to-secondary/15 p-4 relative overflow-hidden">
+            {/* Background decorations */}
+            <div className="absolute inset-0">
+                <div className="absolute top-1/5 right-1/4 w-96 h-96 bg-accent/20 rounded-full blur-3xl animate-pulse"></div>
+                <div className="absolute bottom-1/5 left-1/4 w-80 h-80 bg-primary/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-secondary/10 rounded-full blur-3xl"></div>
+            </div>
+            <div className="max-w-4xl mx-auto relative z-10">
                 <div className="mb-8">
                     <Link
                         href="/"
-                        className="inline-flex items-center gap-2 text-foreground hover:text-secondary transition-colors"
+                        className="inline-flex items-center gap-2 text-foreground hover:text-primary transition-colors"
                     >
                         <ArrowLeft className="h-4 w-4" />
                         Back to home
                     </Link>
                 </div>
 
-                <Card className="bg-card border-border">
+                <Card className="bg-card/80 backdrop-blur border-border/50 shadow-2xl">
                     <CardHeader>
                         <CardTitle className="text-3xl font-bold text-center">
                             <span className="text-foreground">Terms of Service</span>

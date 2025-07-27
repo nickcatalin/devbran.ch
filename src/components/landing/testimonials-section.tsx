@@ -25,14 +25,23 @@ export function TestimonialsSection() {
     ];
 
     return (
-        <section id="testimonials" className="py-20 bg-background">
-            <div className="container mx-auto px-4">
-                <div className="text-center mb-16">
-                    <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-4">
-                        Loved by Developers
+        <section id="testimonials" className="py-24 bg-gradient-to-br from-accent/10 via-primary/5 to-secondary/15 relative overflow-hidden">
+            {/* Background decoration */}
+            <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
+            <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl"></div>
+            <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-secondary/10 rounded-full blur-3xl"></div>
+
+            <div className="container mx-auto px-4 relative">
+                <div className="text-center mb-20">
+                    <div className="inline-flex items-center px-4 py-2 rounded-full bg-accent/10 border border-accent/20 text-accent font-medium text-sm mb-6">
+                        💬 Testimonials
+                    </div>
+                    <h2 className="text-5xl lg:text-6xl font-bold mb-6">
+                        <span className="bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">Loved by </span>
+                        <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">Developers</span>
                     </h2>
-                    <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                        See what developers are saying about DevBran.ch
+                    <p className="text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto font-light">
+                        See what developers around the world are saying about DevBran.ch
                     </p>
                 </div>
 

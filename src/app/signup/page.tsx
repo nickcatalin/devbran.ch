@@ -73,23 +73,29 @@ export default function SignupPage() {
     };
 
     return (
-        <div className="min-h-screen bg-background flex items-center justify-center p-4">
-            <div className="w-full max-w-md">
+        <div className="min-h-screen bg-gradient-to-br from-secondary/10 via-primary/15 to-accent/20 flex items-center justify-center p-4 relative overflow-hidden">
+            {/* Background decorations */}
+            <div className="absolute inset-0">
+                <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-secondary/20 rounded-full blur-3xl animate-pulse"></div>
+                <div className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-primary/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent/10 rounded-full blur-3xl"></div>
+            </div>
+            <div className="w-full max-w-md relative z-10">
                 <div className="mb-8">
                     <Link
                         href="/"
-                        className="inline-flex items-center gap-2 text-foreground hover:text-secondary transition-colors"
+                        className="inline-flex items-center gap-2 text-foreground hover:text-primary transition-colors"
                     >
                         <ArrowLeft className="h-4 w-4" />
                         Back to home
                     </Link>
                 </div>
 
-                <Card className="bg-card border-border">
+                <Card className="bg-card/80 backdrop-blur border-border/50 shadow-2xl">
                     <CardHeader className="text-center space-y-4">
                         <CardTitle className="text-3xl font-bold">
                             <span className="text-foreground">Dev</span>
-                            <span className="text-secondary">Bran.ch</span>
+                            <span className="text-primary">Bran.ch</span>
                         </CardTitle>
                         <CardDescription className="text-muted-foreground">
                             Create your developer profile in minutes
@@ -108,7 +114,7 @@ export default function SignupPage() {
                                     placeholder="johndoe"
                                     value={username}
                                     onChange={(e) => setUsername(e.target.value)}
-                                    className="bg-background border-border focus:border-secondary focus:ring-secondary"
+                                    className="bg-card border-border focus:border-primary focus:ring-primary/20 text-foreground placeholder:text-muted-foreground"
                                     disabled={isLoading}
                                 />
                                 <p className="text-xs text-muted-foreground">
@@ -126,7 +132,7 @@ export default function SignupPage() {
                                     placeholder="john@example.com"
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
-                                    className="bg-background border-border focus:border-secondary focus:ring-secondary"
+                                    className="bg-card border-border focus:border-primary focus:ring-primary/20 text-foreground placeholder:text-muted-foreground"
                                     disabled={isLoading}
                                 />
                             </div>
@@ -141,7 +147,7 @@ export default function SignupPage() {
                                     placeholder="••••••••"
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
-                                    className="bg-background border-border focus:border-secondary focus:ring-secondary"
+                                    className="bg-card border-border focus:border-primary focus:ring-primary/20 text-foreground placeholder:text-muted-foreground"
                                     disabled={isLoading}
                                     onKeyDown={(e) => e.key === 'Enter' && handleSignUp()}
                                 />
@@ -150,12 +156,12 @@ export default function SignupPage() {
 
                         <Button
                             onClick={handleSignUp}
-                            className="w-full bg-secondary hover:bg-accent text-secondary-foreground"
+                            className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
                             disabled={!username || !email || !password || isLoading}
                         >
                             {isLoading ? (
                                 <>
-                                    <div className="mr-2 h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
+                                    <div className="mr-2 h-4 w-4 animate-spin rounded-full border-2 border-primary-foreground border-t-transparent" />
                                     Creating account...
                                 </>
                             ) : (
@@ -214,18 +220,18 @@ export default function SignupPage() {
 
                         <p className="text-center text-sm text-muted-foreground">
                             Already have an account?{" "}
-                            <Link href="/login" className="text-secondary hover:underline font-medium">
+                            <Link href="/login" className="text-primary hover:underline font-medium">
                                 Sign in
                             </Link>
                         </p>
 
                         <p className="text-center text-xs text-muted-foreground">
                             By creating an account, you agree to our{" "}
-                            <Link href="/terms" className="underline hover:text-secondary">
+                            <Link href="/terms" className="underline hover:text-primary">
                                 Terms of Service
                             </Link>{" "}
                             and{" "}
-                            <Link href="/privacy" className="underline hover:text-secondary">
+                            <Link href="/privacy" className="underline hover:text-primary">
                                 Privacy Policy
                             </Link>
                         </p>

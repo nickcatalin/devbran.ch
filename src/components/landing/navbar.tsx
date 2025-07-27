@@ -80,7 +80,7 @@ export function LandingNavbar() {
     return (
         <Navbar className="fixed top-0 left-0 right-0 z-50">
             {/* Desktop Navigation */}
-            <NavBody className="border border-white/50 shadow-lg">
+            <NavBody className="border border-border/50 shadow-lg">
                 {/* Logo */}
                 <div className="flex items-center space-x-2 flex-shrink-0">
                     <div className="flex h-8 w-8 items-center justify-center">
@@ -159,7 +159,7 @@ export function LandingNavbar() {
             </NavBody>
 
             {/* Mobile Navigation */}
-            <MobileNav className="border border-white/50 shadow-lg">
+            <MobileNav className="border border-border/50 shadow-lg">
                 <MobileNavHeader>
                     {/* Mobile Logo */}
                     <div className="flex items-center space-x-2 flex-shrink-0 min-w-0">

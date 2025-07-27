@@ -44,8 +44,14 @@ export default function ForgotPasswordPage() {
     };
 
     return (
-        <div className="min-h-screen bg-background flex items-center justify-center p-4">
-            <div className="w-full max-w-md">
+        <div className="min-h-screen bg-gradient-to-br from-accent/10 via-primary/15 to-secondary/20 flex items-center justify-center p-4 relative overflow-hidden">
+            {/* Background decorations */}
+            <div className="absolute inset-0">
+                <div className="absolute top-1/3 left-1/3 w-96 h-96 bg-accent/20 rounded-full blur-3xl animate-pulse"></div>
+                <div className="absolute bottom-1/3 right-1/3 w-80 h-80 bg-primary/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-secondary/10 rounded-full blur-3xl"></div>
+            </div>
+            <div className="w-full max-w-md relative z-10">
                 <div className="mb-8">
                     <Link
                         href="/login"
@@ -56,7 +62,7 @@ export default function ForgotPasswordPage() {
                     </Link>
                 </div>
 
-                <Card className="bg-card border-border">
+                <Card className="bg-card/80 backdrop-blur border-border/50 shadow-2xl">
                     <CardHeader className="text-center space-y-4">
                         <CardTitle className="text-3xl font-bold">
                             <span className="text-foreground">Dev</span>
@@ -113,7 +119,7 @@ export default function ForgotPasswordPage() {
                                             placeholder="john@example.com"
                                             value={email}
                                             onChange={(e) => setEmail(e.target.value)}
-                                            className="bg-background border-border focus:border-primary focus:ring-primary"
+                                            className="bg-card border-border focus:border-primary focus:ring-primary/20 text-foreground placeholder:text-muted-foreground"
                                             disabled={isLoading}
                                             onKeyPress={(e) => e.key === 'Enter' && handleResetPassword()}
                                         />
@@ -122,7 +128,7 @@ export default function ForgotPasswordPage() {
 
                                 <Button
                                     onClick={handleResetPassword}
-                                    className="w-full bg-primary hover:bg-secondary text-primary-foreground"
+                                    className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
                                     disabled={!email || isLoading}
                                 >
                                     {isLoading ? (
