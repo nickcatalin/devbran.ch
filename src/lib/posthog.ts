@@ -5,7 +5,8 @@ import posthog from 'posthog-js';
 // Initialize PostHog only on client side
 if (typeof window !== 'undefined') {
     posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY || '', {
-        api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST || 'https://us.i.posthog.com',
+        api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST || 'https://eu.i.posthog.com',
+        ui_host: "https://eu.posthog.com",
         capture_pageview: true, // Auto capture page views
         capture_pageleave: true, // Auto capture when users leave pages
         autocapture: true, // Auto capture clicks, form submissions, etc.
